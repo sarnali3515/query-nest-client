@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -8,8 +8,8 @@ import { GithubAuthProvider, GoogleAuthProvider, updateProfile } from "firebase/
 
 const Register = () => {
 
-    // const location = useLocation();
-    // const navigate = useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
     const { createUser, googlePopup, githubPopup } = useContext(AuthContext);
@@ -39,7 +39,7 @@ const Register = () => {
                     .then(data => {
                         console.log(data);
                     })
-                // navigate(location?.state ? location.state : '/');
+                navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.error(error);
@@ -70,7 +70,7 @@ const Register = () => {
                     .then(data => {
                         console.log(data);
                     })
-                // navigate(location?.state ? location.state : '/');
+                navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.error(error);
@@ -128,7 +128,7 @@ const Register = () => {
                     })
                     .catch()
                 toast.success('Registration Successful!');
-                // navigate(location?.state ? location.state : '/');
+                navigate(location?.state ? location.state : '/');
 
                 // new user created
                 // const user = { name, email, photoURL };
@@ -151,10 +151,10 @@ const Register = () => {
     }
     return (
         <div>
-            <section className="bg-white dark:bg-gray-900 mt-10">
+            <section className="bg-emerald-50 pt-10">
                 <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
                     <form onSubmit={handleRegister} className="w-full max-w-md">
-                        <p className="text-center text-xl">Welcome to Query<span className="text-blue-600">Nest</span>!</p>
+                        <p className="text-center text-xl">Welcome to Query<span className="text-emerald-800">Nest</span>!</p>
 
                         <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white text-center">Sign Up</h1>
 
@@ -206,7 +206,7 @@ const Register = () => {
 
 
                         <div className="mt-6">
-                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-600 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50">
                                 Sign Up
                             </button>
                             <div className="flex items-center justify-between mt-4">

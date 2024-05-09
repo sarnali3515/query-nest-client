@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -9,8 +9,8 @@ import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 const Login = () => {
 
     const [showPassword, setShowPassword] = useState(false);
-    // const location = useLocation();
-    // const navigate = useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const { signIn, googlePopup, githubPopup } = useContext(AuthContext);
 
@@ -23,7 +23,7 @@ const Login = () => {
                 console.log(result);
                 toast.success('Login Successful')
 
-                // navigate(location?.state ? location.state : '/');
+                navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.error(error);
@@ -36,7 +36,7 @@ const Login = () => {
             .then(result => {
                 console.log(result);
                 toast.success('Login Successful')
-                // navigate(location?.state ? location.state : '/');
+                navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
                 console.error(error);
@@ -58,7 +58,7 @@ const Login = () => {
                 console.log(result.user);
                 toast.success('Login Successful')
 
-                // navigate(location?.state ? location.state : '/');
+                navigate(location?.state ? location.state : '/');
 
             })
             .catch(error => {
@@ -77,10 +77,10 @@ const Login = () => {
 
     return (
         <div>
-            <section className="bg-white dark:bg-gray-900 mt-10">
+            <section className="bg-emerald-50 pt-10">
                 <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
                     <form onSubmit={handleLogin} className="w-full max-w-md">
-                        <p className="text-center text-xl">Welcome Back to Query<span className="text-blue-600">Nest</span>!</p>
+                        <p className="text-center text-xl">Welcome Back to Query<span className="text-emerald-800">Nest</span>!</p>
 
                         <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white text-center">Login</h1>
 
@@ -110,7 +110,7 @@ const Login = () => {
                         </div>
 
                         <div className="mt-6">
-                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-700 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50">
                                 Login
                             </button>
                             <div className="flex items-center justify-between mt-4">

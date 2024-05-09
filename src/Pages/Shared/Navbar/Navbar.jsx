@@ -2,20 +2,29 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-toastify";
+import { RiLogoutCircleLine } from "react-icons/ri";
 
 
 const Navbar = () => {
-    const { user, logOut } = useContext(AuthContext)
+    const { user, logOut, loading } = useContext(AuthContext)
 
     const handleSignOut = () => {
         logOut()
             .then(
                 result => {
+                    console.log(result)
                     toast.success('Logout Successful')
                 }
             )
             .catch();
     };
+    if (loading) {
+        return (
+            <div className="text-center my-4 md:my-6">
+                <span className="loading loading-lg loading-spinner text-success"></span>
+            </div>
+        );
+    }
 
     const navLinks =
         <>
@@ -29,7 +38,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar bg-base-100">
+            <div className="navbar bg-emerald-800 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -39,7 +48,7 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Query<span className="text-blue-600">Nest</span></a>
+                    <Link to="/" className="btn btn-ghost"><img className="h-14" src="https://i.ibb.co/D1BgPjW/query2-removebg-preview-1.png" alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -47,14 +56,29 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    {
-                        user ?
-                            <button onClick={handleSignOut} className="btn text-white bg-lime-600">Logout</button>
-                            :
-                            <Link to="/login">
-                                <button className="btn text-white bg-lime-600">Login</button>
-                            </Link>
-                    }
+
+                    {user ? (
+                        <>
+                            {/* User profile with hover display name */}
+                            <div className="dropdown z-10 dropdown-hover dropdown-bottom dropdown-end">
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full" title={user.displayName}>
+                                        <img alt={user.displayName} src={user.photoURL} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="dropdown-content space-y-2 z-[1] menu shadow bg-base-100 rounded-box w-56">
+                                    <li><button className="btn bg-cyan-500 text-white">{user.displayName}</button></li>
+                                    <li><button onClick={handleSignOut} className="btn bg-cyan-500 text-white"><RiLogoutCircleLine></RiLogoutCircleLine>Log Out</button></li>
+                                </ul>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+
+                            <Link to="/register"><button className="btn w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none">Register</button></Link>
+                            <Link to="/login"><button className="btn w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none">Login</button></Link>
+                        </>
+                    )}
                 </div>
 
             </div>
