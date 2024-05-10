@@ -151,7 +151,7 @@ const Register = () => {
     }
     return (
         <div>
-            <section className="bg-emerald-50 pt-10">
+            <section className="bg-emerald-50 py-10">
                 <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
                     <form onSubmit={handleRegister} className="w-full max-w-md">
                         <p className="text-center text-xl">Welcome to Query<span className="text-emerald-800">Nest</span>!</p>

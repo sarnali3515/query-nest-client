@@ -3,6 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { RiLogoutCircleLine } from "react-icons/ri";
+import { IoMdLogIn } from "react-icons/io";
+import { CiUser } from "react-icons/ci";
+import './Navbar.css'
 
 
 const Navbar = () => {
@@ -37,18 +40,18 @@ const Navbar = () => {
         </>
 
     return (
-        <div>
-            <div className="navbar bg-emerald-800 text-white">
+        <div className="bg-emerald-800">
+            <div className="navbar  text-white max-w-7xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-emerald-600 rounded-box w-52">
                             {navLinks}
                         </ul>
                     </div>
-                    <Link to="/" className="btn btn-ghost"><img className="h-14" src="https://i.ibb.co/D1BgPjW/query2-removebg-preview-1.png" alt="" /></Link>
+                    <Link to="/" className="btn btn-ghost ml-0 pl-0 "><img className="h-8 lg:h-14" src="https://i.ibb.co/D1BgPjW/query2-removebg-preview-1.png" alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
@@ -75,8 +78,8 @@ const Navbar = () => {
                     ) : (
                         <>
 
-                            <Link to="/register"><button className="btn w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none">Register</button></Link>
-                            <Link to="/login"><button className="btn w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none">Login</button></Link>
+                            <Link to="/register"><button className="btn w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none"><p className="flex gap-1"><CiUser></CiUser>Register</p></button></Link>
+                            <Link to="/login"><button className="btn ml-2 w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none"><p className="flex gap-1"><IoMdLogIn></IoMdLogIn>Login</p></button></Link>
                         </>
                     )}
                 </div>

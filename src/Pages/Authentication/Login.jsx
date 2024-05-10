@@ -27,7 +27,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                toast.error('Incorrect Email or Password');
+                toast.error('Login failed');
 
             })
     }
@@ -63,7 +63,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.error(error);
-                toast.error('Incorrect Email or Password');
+                toast.error('Incorrect Email or Password!');
             })
     }
     // const defaultOptions = {
@@ -77,7 +77,7 @@ const Login = () => {
 
     return (
         <div>
-            <section className="bg-emerald-50 pt-10">
+            <section className="bg-emerald-50 ">
                 <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
                     <form onSubmit={handleLogin} className="w-full max-w-md">
                         <p className="text-center text-xl">Welcome Back to Query<span className="text-emerald-800">Nest</span>!</p>

@@ -1,0 +1,11 @@
+ul li a.active {
+    background: none !important;
+    text-decoration: underline;
+    font-weight: 700;
+    border-radius: 15px;
+    color: rgb(178, 248, 207) !important;
+}
+
+ul li :hover {
+    color: mediumseagreen
+}
