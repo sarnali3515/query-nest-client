@@ -7,6 +7,7 @@ import Register from "../Pages/Authentication/Register";
 import MyQueries from "../Pages/MyQueries/MyQueries";
 import AddQueries from "../Pages/AddQueries/AddQueries";
 import Queries from "../Pages/Queries/Queries";
+import QueryDetails from "../Pages/QueryDetails/QueryDetails";
 
 const router = createBrowserRouter([
     {
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
             {
                 path: "/queries",
                 element: <Queries></Queries>,
-                loader: () => fetch(`${import.meta.env.VITE_API_URL}/queries`)
+                // loader: () => fetch(`${import.meta.env.VITE_API_URL}/queries`)
+            },
+            {
+                path: "/query/:id",
+                element: <QueryDetails></QueryDetails>,
+                // loader: () => fetch(`${import.meta.env.VITE_API_URL}/queries`)
             },
         ]
     },

@@ -77,9 +77,8 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-
                             <Link to="/register"><button className="btn w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none"><p className="flex gap-1"><CiUser></CiUser>Register</p></button></Link>
-                            <Link to="/login"><button className="btn ml-2 w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none"><p className="flex gap-1"><IoMdLogIn></IoMdLogIn>Login</p></button></Link>
+                            <Link to="/login"><button className="btn ml-2 lg:ml-4 w-14 lg:w-16 bg-transparent text-white border-none hover:bg-none"><p className="flex gap-1"><IoMdLogIn></IoMdLogIn>Login</p></button></Link>
                         </>
                     )}
                 </div>
