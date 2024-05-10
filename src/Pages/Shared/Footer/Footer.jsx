@@ -42,7 +42,7 @@ const Footer = () => {
                 <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700" />
 
                 <div className="flex items-center justify-between">
-                    <Link to="/" className="btn btn-ghost"><img className="h-14" src="https://i.ibb.co/D1BgPjW/query2-removebg-preview-1.png" alt="" /></Link>
+                    <Link to="/" className="btn btn-ghost"><img className="h-8 lg:h-14" src="https://i.ibb.co/D1BgPjW/query2-removebg-preview-1.png" alt="" /></Link>
 
                     <div className="flex -mx-2">
                         <a href="#" className="mx-2 text-white transition-colors duration-300 hover:text-emerald-400 dark:hover:text-blue-400" aria-label="Reddit">

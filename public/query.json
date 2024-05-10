@@ -1,0 +1,44 @@
+[
+    {
+        "productImage": "https://example.com/product1.jpg",
+        "queryTitle": "Looking for a new laptop under $1000",
+        "productName": "Laptop",
+        "brandName": "ABC",
+        "alternationReason": "Need a faster processor and longer battery life"
+    },
+    {
+        "productImage": "https://example.com/product2.jpg",
+        "queryTitle": "Seeking recommendations for a fitness tracker",
+        "productName": "Fitness Tracker",
+        "brandName": "XYZ",
+        "alternationReason": "Want one with heart rate monitoring and GPS tracking"
+    },
+    {
+        "productImage": "https://example.com/product3.jpg",
+        "queryTitle": "In search of a vegan protein powder",
+        "productName": "Protein Powder",
+        "brandName": "DEF",
+        "alternationReason": "Preferably organic and without added sugars"
+    },
+    {
+        "productImage": "https://example.com/product4.jpg",
+        "queryTitle": "Looking for eco-friendly kitchen utensils",
+        "productName": "Kitchen Utensils",
+        "brandName": "GHI",
+        "alternationReason": "Want durable, sustainable options"
+    },
+    {
+        "productImage": "https://example.com/product5.jpg",
+        "queryTitle": "Seeking recommendations for noise-canceling headphones",
+        "productName": "Headphones",
+        "brandName": "JKL",
+        "alternationReason": "Need them for travel and work"
+    },
+    {
+        "productImage": "https://example.com/product6.jpg",
+        "queryTitle": "Looking for a new skincare routine",
+        "productName": "Skincare Products",
+        "brandName": "MNO",
+        "alternationReason": "Want products suitable for sensitive skin"
+    }
+]
