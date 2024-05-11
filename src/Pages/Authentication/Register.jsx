@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,8 +12,13 @@ const Register = () => {
     const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
-    const { createUser, googlePopup, githubPopup } = useContext(AuthContext);
+    const { createUser, googlePopup, githubPopup, user, loading } = useContext(AuthContext);
 
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [navigate, user])
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
@@ -47,7 +52,7 @@ const Register = () => {
             })
     }
 
-
+    if (user || loading) return;
     const handleGithubSignIn = () => {
         githubPopup(githubProvider)
             .then(result => {

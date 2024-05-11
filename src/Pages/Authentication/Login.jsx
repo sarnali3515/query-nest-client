@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
@@ -12,7 +12,12 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const { signIn, googlePopup, githubPopup } = useContext(AuthContext);
+    const { signIn, googlePopup, githubPopup, user, loading } = useContext(AuthContext);
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [navigate, user])
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -72,7 +77,7 @@ const Login = () => {
     //         preserveAspectRatio: 'xMidYMid slice'
     //     }
     // }
-
+    if (user || loading) return;
     return (
         <div>
             <section className="bg-emerald-50 ">

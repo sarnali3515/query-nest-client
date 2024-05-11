@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 // import { toast } from "react-toastify";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from 'axios'
+import { toast } from "react-toastify";
 
 
 const QueryDetails = () => {
@@ -46,6 +47,8 @@ const QueryDetails = () => {
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/recommendation`, recommendationData)
             console.log(data)
+            toast.success('Recommendation Successful!');
+            form.reset()
         } catch (err) {
             console.log(err)
         }
