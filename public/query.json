@@ -26,7 +26,7 @@
     {
         "productName": "Sony WH-1000XM4",
         "productBrand": "Sony",
-        "productImageURL": "https://example.com/wh1000xm4.jpg",
+        "productImageURL": "https://i.ibb.co/17FcfqV/Sony-WH-1000-XM4-1.jpg",
         "queryTitle": "Are there better noise-canceling headphones than Sony WH-1000XM4?",
         "boycottingReasonDetails": "Interested in exploring other options with better battery life.",
         "userEmail": "user3@example.com",
@@ -38,7 +38,7 @@
     {
         "productName": "MacBook Pro 16-inch",
         "productBrand": "Apple",
-        "productImageURL": "https://example.com/macbookpro.jpg",
+        "productImageURL": "https://i.ibb.co/dMYwxRd/Mac-Book-Pro-16-inch.jpg",
         "queryTitle": "Looking for alternatives to MacBook Pro 16-inch",
         "boycottingReasonDetails": "Considering options with better performance.",
         "userEmail": "user4@example.com",
@@ -50,7 +50,7 @@
     {
         "productName": "Tesla Model 3",
         "productBrand": "Tesla",
-        "productImageURL": "https://example.com/teslamodel3.jpg",
+        "productImageURL": "https://i.ibb.co/LJ8jLpb/Tesla-Model-3.jpg",
         "queryTitle": "Any alternatives to Tesla Model 3?",
         "boycottingReasonDetails": "Exploring electric car options with longer range.",
         "userEmail": "user5@example.com",
