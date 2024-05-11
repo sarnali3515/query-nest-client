@@ -55,7 +55,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/my-recommendation",
-                element: <MyRecommendations></MyRecommendations>
+                element: <PrivateRoute><MyRecommendations></MyRecommendations></PrivateRoute>
             }
         ]
     },

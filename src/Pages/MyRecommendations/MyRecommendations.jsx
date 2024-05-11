@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { GrView } from "react-icons/gr";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const MyRecommendations = () => {
 
@@ -19,7 +21,31 @@ const MyRecommendations = () => {
         const { data } = await axios(`${import.meta.env.VITE_API_URL}/my-recommendation/${user?.email}`);
         setMyRecommendations(data);
     }
-    console.log(myRecommendations)
+
+    const handleDeleteRecommendation = async id => {
+        try {
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            });
+
+            if (result.isConfirmed) {
+                const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/recommendation/${id}`);
+                console.log(data);
+                toast.success('Deleted Successfully!');
+                // Refresh UI
+                getData();
+            }
+        } catch (err) {
+            console.log(err.message);
+            toast.error(err.message);
+        }
+    };
     return (
         <div className="max-w-7xl mx-auto my-8">
             <h1 className="text-3xl font-bold text-center mb-4">My Recommendations</h1>
@@ -62,7 +88,7 @@ const MyRecommendations = () => {
                                     <td>{recommendation.recommendTime}</td>
                                     <th>
                                         <Link to={`/query/${recommendation.queryId}`}><button className="btn btn-ghost btn-xs text-xl"><GrView></GrView></button></Link>
-                                        <button className="btn btn-ghost btn-xs text-2xl"><MdDelete></MdDelete></button>
+                                        <button onClick={() => handleDeleteRecommendation(recommendation._id)} className="btn btn-ghost btn-xs text-2xl"><MdDelete></MdDelete></button>
                                     </th>
                                 </tr>
                             ))
