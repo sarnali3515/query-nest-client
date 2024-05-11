@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { MdEdit, MdOpenInFull, MdDelete } from "react-icons/md";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Swal from 'sweetalert2';
 
 const MyQueries = () => {
     const { user } = useContext(AuthContext);
@@ -22,16 +23,29 @@ const MyQueries = () => {
 
     const handleDeleteQuery = async id => {
         try {
-            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/query/${id}`)
-            console.log(data)
-            toast.success('Deleted Successfully!')
-            // refresh ui
-            getData()
+            const result = await Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            });
+
+            if (result.isConfirmed) {
+                const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/query/${id}`);
+                console.log(data);
+                toast.success('Deleted Successfully!');
+                // Refresh UI
+                getData();
+            }
         } catch (err) {
-            console.log(err.message)
-            toast.error(err.message)
+            console.log(err.message);
+            toast.error(err.message);
         }
-    }
+    };
+
 
 
     return (
