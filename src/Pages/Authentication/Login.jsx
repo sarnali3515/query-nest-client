@@ -44,7 +44,6 @@ const Login = () => {
             })
     }
 
-
     const handleLogin = e => {
         e.preventDefault();
         console.log(e.currentTarget)
@@ -57,7 +56,6 @@ const Login = () => {
             .then(result => {
                 console.log(result.user);
                 toast.success('Login Successful')
-
                 navigate(location?.state ? location.state : '/');
 
             })

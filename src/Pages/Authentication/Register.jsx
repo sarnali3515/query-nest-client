@@ -27,18 +27,18 @@ const Register = () => {
                 const photoURL = result.user.photoURL;
                 console.log(name, email, photoURL)
 
-                const user = { name, email, photo: photoURL };
-                fetch('https://tourism-management-server-pearl.vercel.app/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(user)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                    })
+                // const user = { name, email, photo: photoURL };
+                // fetch('https://tourism-management-server-pearl.vercel.app/users', {
+                //     method: 'POST',
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify(user)
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         console.log(data);
+                //     })
                 navigate(location?.state ? location.state : '/');
             })
             .catch(error => {
@@ -58,18 +58,18 @@ const Register = () => {
                 const photoURL = result.user.photoURL;
                 console.log(name, email, photoURL)
 
-                const user = { name, email, photo: photoURL };
-                fetch('https://tourism-management-server-pearl.vercel.app/users', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(user)
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        console.log(data);
-                    })
+                // const user = { name, email, photo: photoURL };
+                // fetch('https://tourism-management-server-pearl.vercel.app/users', {
+                //     method: 'POST',
+                //     headers: {
+                //         'content-type': 'application/json'
+                //     },
+                //     body: JSON.stringify(user)
+                // })
+                //     .then(res => res.json())
+                //     .then(data => {
+                //         console.log(data);
+                //     })
                 navigate(location?.state ? location.state : '/');
             })
             .catch(error => {

@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { MdEdit, MdOpenInFull, MdDelete } from "react-icons/md";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const MyQueries = () => {
     const { user } = useContext(AuthContext);
@@ -11,14 +12,27 @@ const MyQueries = () => {
     const [queries, setQueries] = useState([]);
 
     useEffect(() => {
-        const getData = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries/${user?.email}`);
-            setQueries(data);
-        }
         getData()
-    }, [user])
+    }, [user]);
 
-    console.log(queries)
+    const getData = async () => {
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries/${user?.email}`);
+        setQueries(data);
+    }
+
+    const handleDeleteQuery = async id => {
+        try {
+            const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/query/${id}`)
+            console.log(data)
+            toast.success('Deleted Successfully!')
+            // refresh ui
+            getData()
+        } catch (err) {
+            console.log(err.message)
+            toast.error(err.message)
+        }
+    }
+
 
     return (
         <div className="max-w-7xl mx-auto">
@@ -29,13 +43,22 @@ const MyQueries = () => {
                         <div className="max-w-md pl-3 lg:pl-10">
                             <h1 className="mb-5 text-5xl font-bold">Any Queries?</h1>
                             <p className="mb-5">Unlock the gateway to your queries realm. Seamlessly add, update, and organize your inquiries in one convenient hub, tailored to your needs.</p>
-                            <Link to="/add-queries"><button className="btn bg-emerald-800 text-white font-bold">Add Queries</button></Link>
+                            <Link to="/add-queries"><button className="btn bg-emerald-800 text-white font-bold">+ Add Queries</button></Link>
                         </div>
                     </div>
                 </div>
             </div>
-            <Link to="/add-queries">Add Queries Now</Link>
-            <div className="grid lg:grid-cols-3 gap-5 mb-8">
+            <h1 className="text-4xl font-bold text-center mt-8">My Queries</h1>
+            {
+                queries.length <= 0 &&
+                <div className="text-center mt-6">
+                    <h4 className="text-xl mb-7">No Queries Added</h4>
+                    <Link className="border-4 text-bold hover:text-emerald-500 border-dotted px-5 py-3" to="/add-queries">+ Add Queries Now</Link>
+                </div>
+            }
+
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5  my-8">
                 {
                     queries.map(query => <div
                         key={query._id}
@@ -52,9 +75,8 @@ const MyQueries = () => {
                                 <div className="flex gap-2">
                                     <Link to={`/query/${query._id}`}><button className="btn px-2 bg-emerald-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdOpenInFull> </MdOpenInFull>Details</button></Link>
                                     <Link ><button className="btn px-2 bg-blue-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdEdit></MdEdit>Update</button></Link>
-                                    <Link ><button className="btn px-2 bg-red-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdDelete></MdDelete> Delete</button></Link>
+                                    <Link ><button onClick={() => { handleDeleteQuery(query._id) }} className="btn px-2 bg-red-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdDelete></MdDelete> Delete</button></Link>
                                 </div>
-
                             </div>
                             <figure className="px-5  bg-emerald-50">
                                 <img src={query.productImage} alt="Shoes" className="rounded-xl lg:h-40" />
