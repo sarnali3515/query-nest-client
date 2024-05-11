@@ -1,44 +1,74 @@
 [
     {
-        "productImage": "https://example.com/product1.jpg",
-        "queryTitle": "Looking for a new laptop under $1000",
-        "productName": "Laptop",
-        "brandName": "ABC",
-        "alternationReason": "Need a faster processor and longer battery life"
+        "productName": "iPhone 12 Pro",
+        "productBrand": "Apple",
+        "productImageURL": "https://i.ibb.co/DpsJMCn/iphone12pro.jpg",
+        "queryTitle": "Is there a better alternative to iPhone 12 Pro?",
+        "boycottingReasonDetails": "Looking for a more budget-friendly option with similar features.",
+        "userEmail": "user1@example.com",
+        "name": "John Doe",
+        "image": "https://example.com/users/user1.jpg",
+        "currentTime": "May 9, 2024 10:30 AM",
+        "recommendationCount": 0
     },
     {
-        "productImage": "https://example.com/product2.jpg",
-        "queryTitle": "Seeking recommendations for a fitness tracker",
-        "productName": "Fitness Tracker",
-        "brandName": "XYZ",
-        "alternationReason": "Want one with heart rate monitoring and GPS tracking"
+        "productName": "Samsung Galaxy S21 Ultra",
+        "productBrand": "Samsung",
+        "productImageURL": "https://i.ibb.co/6Z0VswZ/samsuns21ultra.jpg",
+        "queryTitle": "Seeking alternatives to Samsung Galaxy S21 Ultra",
+        "boycottingReasonDetails": "Interested in exploring other flagship options.",
+        "userEmail": "user2@example.com",
+        "name": "Jane Smith",
+        "image": "https://example.com/users/user2.jpg",
+        "currentTime": "May 9, 2024 11:45 AM",
+        "recommendationCount": 0
     },
     {
-        "productImage": "https://example.com/product3.jpg",
-        "queryTitle": "In search of a vegan protein powder",
-        "productName": "Protein Powder",
-        "brandName": "DEF",
-        "alternationReason": "Preferably organic and without added sugars"
+        "productName": "Sony WH-1000XM4",
+        "productBrand": "Sony",
+        "productImageURL": "https://example.com/wh1000xm4.jpg",
+        "queryTitle": "Are there better noise-canceling headphones than Sony WH-1000XM4?",
+        "boycottingReasonDetails": "Interested in exploring other options with better battery life.",
+        "userEmail": "user3@example.com",
+        "name": "Alex Johnson",
+        "image": "https://example.com/users/user3.jpg",
+        "currentTime": "May 9, 2024 1:20 PM",
+        "recommendationCount": 0
     },
     {
-        "productImage": "https://example.com/product4.jpg",
-        "queryTitle": "Looking for eco-friendly kitchen utensils",
-        "productName": "Kitchen Utensils",
-        "brandName": "GHI",
-        "alternationReason": "Want durable, sustainable options"
+        "productName": "MacBook Pro 16-inch",
+        "productBrand": "Apple",
+        "productImageURL": "https://example.com/macbookpro.jpg",
+        "queryTitle": "Looking for alternatives to MacBook Pro 16-inch",
+        "boycottingReasonDetails": "Considering options with better performance.",
+        "userEmail": "user4@example.com",
+        "name": "Emily Brown",
+        "image": "https://example.com/users/user4.jpg",
+        "currentTime": "May 9, 2024 3:05 PM",
+        "recommendationCount": 0
     },
     {
-        "productImage": "https://example.com/product5.jpg",
-        "queryTitle": "Seeking recommendations for noise-canceling headphones",
-        "productName": "Headphones",
-        "brandName": "JKL",
-        "alternationReason": "Need them for travel and work"
+        "productName": "Tesla Model 3",
+        "productBrand": "Tesla",
+        "productImageURL": "https://example.com/teslamodel3.jpg",
+        "queryTitle": "Any alternatives to Tesla Model 3?",
+        "boycottingReasonDetails": "Exploring electric car options with longer range.",
+        "userEmail": "user5@example.com",
+        "name": "Michael Johnson",
+        "image": "https://example.com/users/user5.jpg",
+        "currentTime": "May 9, 2024 4:45 PM",
+        "recommendationCount": 0
     },
     {
-        "productImage": "https://example.com/product6.jpg",
-        "queryTitle": "Looking for a new skincare routine",
-        "productName": "Skincare Products",
-        "brandName": "MNO",
-        "alternationReason": "Want products suitable for sensitive skin"
+        "productName": "Bose QuietComfort Earbuds",
+        "productBrand": "Bose",
+        "productImageURL": "https://example.com/quietcomfort.jpg",
+        "queryTitle": "Seeking alternatives to Bose QuietComfort Earbuds",
+        "boycottingReasonDetails": "Looking for earbuds with better comfort for long-term use.",
+        "userEmail": "user6@example.com",
+        "name": "Sarah Wilson",
+        "image": "https://example.com/users/user6.jpg",
+        "currentTime": "May 9, 2024 6:15 PM",
+        "recommendationCount": 0
     }
 ]

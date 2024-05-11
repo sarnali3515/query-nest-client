@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from 'axios'
 
@@ -7,9 +8,11 @@ import axios from 'axios'
 const QueryDetails = () => {
     const query = useLoaderData()
     const { user } = useContext(AuthContext)
-    const { _id, productImage, queryTitle, productName, brandName, alternationReason } = query;
+    const { _id, productImage, queryTitle, productName, brandName, alternationReason, userName, userEmail, userImage, currentTime, recommendationCount } = query;
 
     const handleRecommendations = async e => {
+        // if(userEmail===user?.email)
+        //     return toast.error('Not Permitted')
         e.preventDefault();
         const form = e.target;
         const queryId = _id;
@@ -17,14 +20,12 @@ const QueryDetails = () => {
         const recommendName = form.name.value;
         const recommendPhoto = form.photo.value;
         const recommendReason = form.reason.value;
-        // const userName = userName          //to do: update after add queries created
-        // const userEmail = userEmail
-        const userName = 'Khatuna Jannat Sarnali'
-        const userEmail = '191sarnali@gmail.com'
         const recommenderName = user?.displayName;
         const recommenderEmail = user?.email;
-        // const currentTime = time;
-        const currentTime = '2:14 AM Sunday, 11 May 2024';
+        const currentDate = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        const formattedDate = currentDate.toLocaleDateString('en-US', options);
+        const recommendTime = formattedDate;
 
         const recommendationData = {
             queryId,
@@ -38,7 +39,7 @@ const QueryDetails = () => {
             userEmail,
             recommenderName,
             recommenderEmail,
-            currentTime
+            recommendTime
         }
         console.table(recommendationData);
 
@@ -60,12 +61,12 @@ const QueryDetails = () => {
                         <div className="flex items-center gap-3 lg:gap-5">
                             <div className="avatar">
                                 <div className="w-14 md:w-16 rounded-full">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                    <img src={userImage} />
                                 </div>
                             </div>
                             <div>
-                                <h2 className="card-title text-lg md:text-2xl font-bold">Khatuna Jannat Sarnali</h2>
-                                <p>Posted on 10/05/2024</p>
+                                <h2 className="card-title text-lg md:text-2xl font-bold">{userName}</h2>
+                                <p>Posted on {currentTime}</p>
                             </div>
                         </div>
                         <h3 className="text-lg font-semibold">{queryTitle}</h3>
@@ -73,11 +74,11 @@ const QueryDetails = () => {
                         <p><span className="font-semibold">Brand:</span> {brandName}</p>
                         <p><span className="font-semibold">Alternation Reason:</span> {alternationReason}</p>
 
-                        <p><span className="font-semibold">Recommendations:</span> 2</p>
+                        <p><span className="font-semibold">Recommendations:</span> {recommendationCount}</p>
 
                     </div>
                     <figure className="px-5">
-                        <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="rounded-xl " />
+                        <img src={productImage} alt="Shoes" className="rounded-xl " />
                     </figure>
                 </div>
             </div>

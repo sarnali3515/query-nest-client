@@ -1,32 +1,38 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const AddQueries = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleAddQueries = async e => {
         e.preventDefault();
         const form = e.target;
         const queryTitle = form.title.value;
-        const queryBrand = form.brand.value;
+        const brandName = form.brand.value;
         const productName = form.pname.value;
-        const queryPhoto = form.photo.value;
-        const queryReason = form.boycottReason.value;
+        const productImage = form.photo.value;
+        const alternationReason = form.alternationReason.value;
         const userName = user?.displayName;
         const userEmail = user?.email;
         const userImage = user?.photoURL;
-        // const currentTime = time;
-        const currentTime = '2:14 AM Sunday, 11 May 2024';
+
+        const currentDate = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+        const formattedDate = currentDate.toLocaleDateString('en-US', options);
+        const currentTime = formattedDate;
+
         const recommendationCount = 0;
 
         const queryData = {
             queryTitle,
-            queryBrand,
+            brandName,
             productName,
-            queryPhoto,
-            queryReason,
+            productImage,
+            alternationReason,
             userName,
             userEmail,
             userImage,
@@ -35,9 +41,11 @@ const AddQueries = () => {
         }
         console.table(queryData);
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/queries`, queryData)
-            console.log(data)
-        } catch (err) {
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/queries`, queryData);
+            console.log(data);
+            navigate('/my-queries');
+        }
+        catch (err) {
             console.log(err)
         }
     }
@@ -76,7 +84,7 @@ const AddQueries = () => {
                     <label className="label">
                         <span className="label-text">Reason of Boycotting</span>
                     </label>
-                    <input type="text" name="boycottReason" placeholder="Why Boycotting this product?" className="input input-bordered" required />
+                    <input type="text" name="alternationReason" placeholder="Why Boycotting this product?" className="input input-bordered" required />
                 </div>
                 <div className="form-control mt-6">
                     <button className="btn bg-emerald-300 font-bold">Post Queries</button>

@@ -28,12 +28,12 @@ const Queries = () => {
                             <div className="flex items-center gap-3 lg:gap-5">
                                 <div className="avatar">
                                     <div className="w-14 md:w-16 rounded-full">
-                                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                        <img src={query.userImage} />
                                     </div>
                                 </div>
                                 <div>
-                                    <h2 className="card-title text-lg md:text-2xl font-bold">Khatuna Jannat Sarnali</h2>
-                                    <p>Posted on 10/05/2024</p>
+                                    <h2 className="card-title text-lg md:text-2xl font-bold">{query.userName}</h2>
+                                    <p>{query.currentTime}</p>
                                 </div>
                             </div>
                             <h3 className="text-lg font-semibold">{query.queryTitle}</h3>
@@ -41,12 +41,12 @@ const Queries = () => {
                             <p><span className="font-semibold">Brand:</span> {query.brandName}</p>
                             <p><span className="font-semibold">Alternation Reason:</span> {query.alternationReason}</p>
 
-                            <p><span className="font-semibold">Recommendations:</span> 2</p>
+                            <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
                             <Link to={`/query/${query._id}`}><button className="btn bg-emerald-100 font-bold w-full lg:max-w-3xl lg:mx-auto">Recommend</button></Link>
 
                         </div>
                         <figure className="px-5  bg-emerald-50">
-                            <img src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="rounded-xl lg:max-w-xl" />
+                            <img src={query.productImage} alt="Shoes" className="rounded-xl lg:max-w-xl" />
                         </figure>
                     </div>
                 </div>)
