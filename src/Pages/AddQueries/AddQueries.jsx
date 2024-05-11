@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 const AddQueries = () => {
@@ -43,10 +44,12 @@ const AddQueries = () => {
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/queries`, queryData);
             console.log(data);
+            toast.success('Added successfully')
             navigate('/my-queries');
         }
         catch (err) {
-            console.log(err)
+            console.log(err);
+            toast.error(err.message)
         }
     }
     return (

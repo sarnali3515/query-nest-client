@@ -8,6 +8,7 @@ import MyQueries from "../Pages/MyQueries/MyQueries";
 import AddQueries from "../Pages/AddQueries/AddQueries";
 import Queries from "../Pages/Queries/Queries";
 import QueryDetails from "../Pages/QueryDetails/QueryDetails";
+import UpdateQueries from "../Pages/MyQueries/UpdateQueries";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,11 @@ const router = createBrowserRouter([
             {
                 path: "/query/:id",
                 element: <QueryDetails></QueryDetails>,
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/query/${params.id}`)
+            },
+            {
+                path: "/update/:id",
+                element: <UpdateQueries></UpdateQueries>,
                 loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/query/${params.id}`)
             },
         ]

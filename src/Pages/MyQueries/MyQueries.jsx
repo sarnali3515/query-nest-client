@@ -88,7 +88,7 @@ const MyQueries = () => {
                                 <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
                                 <div className="flex gap-2">
                                     <Link to={`/query/${query._id}`}><button className="btn px-2 bg-emerald-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdOpenInFull> </MdOpenInFull>Details</button></Link>
-                                    <Link ><button className="btn px-2 bg-blue-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdEdit></MdEdit>Update</button></Link>
+                                    <Link to={`/update/${query._id}`} ><button className="btn px-2 bg-blue-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdEdit></MdEdit>Update</button></Link>
                                     <Link ><button onClick={() => { handleDeleteQuery(query._id) }} className="btn px-2 bg-red-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdDelete></MdDelete> Delete</button></Link>
                                 </div>
                             </div>
