@@ -18,10 +18,11 @@ const RecentQueries = () => {
     console.log(queries)
 
     return (
-        <div className="">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-8 max-w-7xl mx-auto ">
+        <div className="max-w-7xl mx-auto ">
+            <h1 className="text-3xl font-bold mt-12 border-l-4 border-emerald-600 pl-4"> Most Recent Queries </h1>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-8 ">
                 {
-                    queries?.map(query => <div key={query._id}>
+                    queries?.slice(0, 6).map(query => <div key={query._id}>
                         <Link to={`/query/${query._id}`}>
                             <div className="card  rounded w-full border-2 shadow-xl h-[600px]">
                                 <div className="card-body lg:px-6">
@@ -53,7 +54,9 @@ const RecentQueries = () => {
                     </div>)
 
                 }
+
             </div>
+            <Link to="/queries"><div className="flex mb-8 items-center justify-center"><button className="btn bg-emerald-800 text-white">See All -{">"}</button></div></Link>
         </div>
     );
 };

@@ -67,10 +67,9 @@ const MyQueries = () => {
                 queries.length <= 0 &&
                 <div className="text-center mt-6">
                     <h4 className="text-xl mb-7">No Queries Added</h4>
-                    <Link className="border-4 text-bold hover:text-emerald-500 border-dotted px-5 py-3" to="/add-queries">+ Add Queries Now</Link>
+                    <Link to="/add-queries" className="border-4 text-bold hover:text-emerald-500 border-dotted px-5 py-3">+ Add Queries Now</Link>
                 </div>
             }
-
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5  my-8">
                 {

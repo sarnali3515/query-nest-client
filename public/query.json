@@ -62,13 +62,25 @@
     {
         "productName": "Bose QuietComfort Earbuds",
         "productBrand": "Bose",
-        "productImageURL": "https://example.com/quietcomfort.jpg",
+        "productImageURL": "https://i.ibb.co/HtFffVY/Bose-Quiet-Comfort-Earbuds.webp",
         "queryTitle": "Seeking alternatives to Bose QuietComfort Earbuds",
         "boycottingReasonDetails": "Looking for earbuds with better comfort for long-term use.",
         "userEmail": "user6@example.com",
         "name": "Sarah Wilson",
         "image": "https://example.com/users/user6.jpg",
         "currentTime": "May 9, 2024 6:15 PM",
+        "recommendationCount": 0
+    },
+    {
+        "productName": "Google Pixel 6 Pro",
+        "productBrand": "Google",
+        "productImageURL": "https://i.ibb.co/jw0szV3/google-pixel-6-pro-in-hand.webp",
+        "queryTitle": "Looking for an alternative to Google Pixel 6 Pro",
+        "boycottingReasonDetails": "Interested in exploring other Android flagship options.",
+        "userEmail": "user7@example.com",
+        "name": "Chris Davis",
+        "image": "https://example.com/users/user7.jpg",
+        "currentTime": "May 9, 2024 8:30 AM",
         "recommendationCount": 0
     }
 ]
