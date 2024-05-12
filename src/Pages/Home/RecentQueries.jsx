@@ -15,7 +15,7 @@ const RecentQueries = () => {
         setQueries(data);
     }
 
-    console.log(queries)
+    // console.log(queries)
 
     return (
         <div className="max-w-7xl mx-auto ">

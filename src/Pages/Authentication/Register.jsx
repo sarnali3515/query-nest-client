@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { GithubAuthProvider, GoogleAuthProvider, updateProfile } from "firebase/auth";
+import axios from "axios";
 
 const Register = () => {
 
@@ -22,76 +23,57 @@ const Register = () => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
-    const handleGoogleSignIn = () => {
-        googlePopup(googleProvider)
-            .then(result => {
-                console.log(result);
-                toast.success('Registration Successful!');
-                const name = result.user.displayName;
-                const email = result.user.email;
-                const photoURL = result.user.photoURL;
-                console.log(name, email, photoURL)
+    const handleGoogleSignIn = async () => {
+        try {
+            const result = await googlePopup(googleProvider);
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+                { email: result?.user?.email },
+                { withCredentials: true }
+            )
+            console.log(result);
+            toast.success('Registration Successful!');
 
-                // const user = { name, email, photo: photoURL };
-                // fetch('https://tourism-management-server-pearl.vercel.app/users', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(user)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         console.log(data);
-                //     })
-                navigate(location?.state ? location.state : '/');
-            })
-            .catch(error => {
-                console.error(error);
-                toast.error('Registration Failed!')
-            })
+            const name = result.user.displayName;
+            const email = result.user.email;
+            const photoURL = result.user.photoURL;
+            console.log(name, email, photoURL);
+
+            // Generate JWT token
+
+            console.log(data); // Assuming data contains the JWT token
+
+            navigate(location?.state ? location.state : '/');
+        } catch (error) {
+            console.error(error);
+            toast.error('Registration Failed!');
+        }
     }
 
-    if (user || loading) return;
-    const handleGithubSignIn = () => {
-        githubPopup(githubProvider)
-            .then(result => {
-                console.log(result);
-                toast.success('Registration Successful!');
-                const name = result.user.displayName;
-                const email = result.user.email;
-                const photoURL = result.user.photoURL;
-                console.log(name, email, photoURL)
 
-                // const user = { name, email, photo: photoURL };
-                // fetch('https://tourism-management-server-pearl.vercel.app/users', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(user)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         console.log(data);
-                //     })
-                navigate(location?.state ? location.state : '/');
-            })
-            .catch(error => {
-                console.error(error);
-                toast.error('Registration Failed!')
-            })
+    const handleGithubSignIn = async () => {
+        try {
+            const result = await githubPopup(githubProvider);
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+                { email: result?.user?.email },
+                { withCredentials: true }
+            )
+            console.log(data);
+            toast.success('Registration Successful!');
+
+            const name = result.user.displayName;
+            const email = result.user.email;
+            const photoURL = result.user.photoURL;
+            console.log(name, email, photoURL);
+
+            navigate(location?.state ? location.state : '/');
+        } catch (error) {
+            console.error(error);
+            toast.error('Registration Failed!');
+        }
     }
-    // const defaultOptions = {
-    //     loop: true,
-    //     autoplay: true,
-    //     animationData: animationData,
-    //     rendererSettings: {
-    //         preserveAspectRatio: 'xMidYMid slice'
-    //     }
-    // }
 
-    const handleRegister = e => {
+
+    const handleRegister = async e => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
@@ -119,41 +101,29 @@ const Register = () => {
             return;
         }
 
-        createUser(email, password)
-            .then(result => {
-                console.log(result.user);
+        try {
+            const result = await createUser(email, password);
+            console.log(result.user);
 
-                //update
-                updateProfile(result.user, {
-                    displayName: name,
-                    photoURL: photoURL
-                })
-                    .then(() => {
-                        console.log('profile updated')
-                    })
-                    .catch()
-                toast.success('Registration Successful!');
-                navigate(location?.state ? location.state : '/');
+            // Update profile
+            await updateProfile(result.user, {
+                displayName: name,
+                photoURL: photoURL
+            });
+            console.log('Profile updated');
 
-                // new user created
-                // const user = { name, email, photoURL };
-                // fetch('https://tourism-management-server-pearl.vercel.app/users', {
-                //     method: 'POST',
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(user)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         console.log(data);
-                //     })
-
-            })
-            .catch(error => {
-                console.error(error)
-            })
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+                { email: result?.user?.email },
+                { withCredentials: true }
+            )
+            console.log(data)
+            toast.success('Registration Successful!');
+            navigate(location?.state ? location.state : '/');
+        } catch (error) {
+            console.error(error);
+        }
     }
+    if (user || loading) return;
     return (
         <div>
             <section className="bg-emerald-50 py-10">

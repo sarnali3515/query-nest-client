@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { useContext, useEffect, useState } from "react";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import axios from "axios";
 
 const Login = () => {
 
@@ -22,34 +23,44 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
-    const handleGoogleLogIn = () => {
-        googlePopup(googleProvider)
-            .then(result => {
-                console.log(result);
-                toast.success('Login Successful')
+    const handleGoogleLogIn = async () => {
+        try {
+            const result = await googlePopup(googleProvider)
+            console.log(result.user)
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+                { email: result?.user?.email },
+                { withCredentials: true }
+            )
+            console.log(data)
+            toast.success('Login Successful')
+            navigate(location?.state ? location.state : '/');
 
-                navigate(location?.state ? location.state : '/');
-            })
-            .catch(error => {
-                console.error(error);
-                toast.error('Login failed');
+        } catch (err) {
+            console.error(err);
+            toast.error(err?.message);
+        }
 
-            })
     }
-    const handleGithubLogIn = () => {
-        githubPopup(githubProvider)
-            .then(result => {
-                console.log(result);
-                toast.success('Login Successful')
-                navigate(location?.state ? location.state : '/');
-            })
-            .catch(error => {
-                console.error(error);
-                toast.error('Incorrect Email or Password');
-            })
+    const handleGithubLogIn = async () => {
+        try {
+            const result = await githubPopup(githubProvider)
+            console.log(result.user)
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+                { email: result?.user?.email },
+                { withCredentials: true }
+            )
+            console.log(data)
+            toast.success('Login Successful')
+            navigate(location?.state ? location.state : '/');
+
+        } catch (err) {
+            console.error(err);
+            toast.error(err?.message);
+        }
+
     }
 
-    const handleLogin = e => {
+    const handleLogin = async e => {
         e.preventDefault();
         console.log(e.currentTarget)
         const form = new FormData(e.currentTarget);
@@ -57,17 +68,33 @@ const Login = () => {
         const password = form.get('password');
         console.log(email, password);
 
-        signIn(email, password)
-            .then(result => {
-                console.log(result.user);
-                toast.success('Login Successful')
-                navigate(location?.state ? location.state : '/');
+        try {
+            const result = await signIn(email, password)
+            console.log(result.user)
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/jwt`,
+                { email: result?.user?.email },
+                { withCredentials: true }
+            )
+            console.log(data)
+            toast.success('Login Successful')
+            navigate(location?.state ? location.state : '/');
 
-            })
-            .catch(error => {
-                console.error(error);
-                toast.error('Incorrect Email or Password!');
-            })
+        } catch (err) {
+            console.error(err);
+            toast.error(err?.message);
+        }
+
+        // signIn(email, password)
+        //     .then(result => {
+        //         console.log(result.user);
+        //         toast.success('Login Successful')
+        //         navigate(location?.state ? location.state : '/');
+
+        //     })
+        //     .catch(error => {
+        //         console.error(error);
+        //         toast.error('Incorrect Email or Password!');
+        //     })
     }
     // const defaultOptions = {
     //     loop: true,

@@ -34,7 +34,7 @@ const Queries = () => {
                                     </div>
                                     <div>
                                         <h2 className="card-title text-lg md:text-2xl font-bold">{query.userName}</h2>
-                                        <p>{query.currentTime}</p>
+                                        <p className="text-base">{query.currentTime}</p>
                                     </div>
                                 </div>
                                 <h3 className="text-lg font-semibold">{query.queryTitle}</h3>

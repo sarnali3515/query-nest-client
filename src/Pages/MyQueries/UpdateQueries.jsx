@@ -59,7 +59,6 @@ const UpdateQueries = () => {
                             <span className="label-text">Brand Name</span>
                         </label>
                         <input type="text" name="brand" defaultValue={brandName} placeholder="Brand of the Product" className="input input-bordered" required />
-
                     </div>
                 </div>
                 <div className="form-control">
@@ -84,7 +83,6 @@ const UpdateQueries = () => {
                     <button className="btn bg-emerald-300 font-bold">Post Queries</button>
                 </div>
             </form>
-
         </div>
     );
 };

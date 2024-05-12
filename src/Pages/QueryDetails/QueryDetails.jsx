@@ -60,15 +60,16 @@ const QueryDetails = () => {
         }
     }
 
-
     useEffect(() => {
         getData()
-    }, [user]);
+    }, []);
 
     const getData = async () => {
         const { data } = await axios(`${import.meta.env.VITE_API_URL}/recommendation`);
-        setRecommendations(data);
+        const filteredRecommendations = data.filter(recommendation => recommendation.queryId === _id);
+        setRecommendations(filteredRecommendations);
     }
+    const recommendationCountForQuery = recommendations.length;
     console.log(recommendations)
 
     return (
@@ -86,7 +87,7 @@ const QueryDetails = () => {
                                 </div>
                                 <div>
                                     <h2 className="card-title text-lg md:text-2xl font-bold">{userName}</h2>
-                                    <p>Posted on {currentTime}</p>
+                                    <p className="text-sm">Posted on {currentTime}</p>
                                 </div>
                             </div>
                             <h3 className="text-lg font-semibold">{queryTitle}</h3>
