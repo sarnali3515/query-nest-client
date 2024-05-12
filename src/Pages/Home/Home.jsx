@@ -1,5 +1,6 @@
 import Banner from "./Banner";
 import Carousel from "./Carousel";
+import RecentQueries from "./RecentQueries";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Carousel></Carousel>
             <Banner></Banner>
+            <RecentQueries></RecentQueries>
         </div>
     );
 };

@@ -77,8 +77,8 @@ const MyQueries = () => {
                     queries.map(query => <div
                         key={query._id}
                     >
-                        <div className="card rounded h-[500px] max-w-4xl mx-auto w-full border shadow-xl">
-                            <div className="card-body lg:px-14">
+                        <div className="card rounded h-[600px] max-w-4xl mx-auto w-full border shadow-xl">
+                            <div className="card-body lg:px-8">
                                 <h3 className="text-lg font-semibold">{query.queryTitle}</h3>
                                 <p className="text-xs">Posted on {query.currentTime}</p>
                                 <p><span className="font-semibold">Name:</span> {query.productName}</p>
@@ -93,7 +93,7 @@ const MyQueries = () => {
                                 </div>
                             </div>
                             <figure className="px-5  bg-emerald-50">
-                                <img src={query.productImage} alt="Shoes" className="rounded-xl lg:h-40" />
+                                <img src={query.productImage} alt="Shoes" className="rounded-xl md:h-60 md:max-w-96" />
                             </figure>
                         </div>
                     </div>)
