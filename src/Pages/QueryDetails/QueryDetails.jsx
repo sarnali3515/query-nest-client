@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
-// import { toast } from "react-toastify";
 import { AuthContext } from "../../Provider/AuthProvider";
 import axios from 'axios'
 import { toast } from "react-toastify";
@@ -10,6 +9,7 @@ const QueryDetails = () => {
     const query = useLoaderData()
     const { user } = useContext(AuthContext)
     const { _id, productImage, queryTitle, productName, brandName, alternationReason, userName, userEmail, userImage, currentTime, recommendationCount } = query;
+    const [recommendations, setRecommendations] = useState([]);
 
     // console.log(userEmail, user?.email)
 
@@ -20,7 +20,7 @@ const QueryDetails = () => {
             return;
         }
 
-        e.preventDefault();
+
         const form = e.target;
         const queryId = _id;
         const recommendTitle = form.title.value;
@@ -58,10 +58,8 @@ const QueryDetails = () => {
         } catch (err) {
             console.log(err)
         }
-
     }
 
-    const [recommendations, setRecommendations] = useState([]);
 
     useEffect(() => {
         getData()
@@ -141,12 +139,10 @@ const QueryDetails = () => {
                         </form>
                     </div>
                 </div>
-
             </div>
             <div className="border-x border-b rounded-b mb-6 bg-emerald-50">
                 <h4 className="ml-6 pt-6 font-semibold">All Recommendations -{">"}</h4>
                 {
-
                     recommendations.map(recommendation => <div key={recommendation._id}>
                         {
                             recommendation.queryId === _id &&

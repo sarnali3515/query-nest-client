@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import img from '../../assets/images/query-2.1.jpg'
+import img from '../../assets/images/banners1.jpg'
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { MdEdit, MdOpenInFull, MdDelete } from "react-icons/md";
@@ -51,7 +51,7 @@ const MyQueries = () => {
     return (
         <div className="max-w-7xl mx-auto">
             <div className="mt-6">
-                <div className="hero justify-start min-h-96 rounded" style={{ backgroundImage: `url(${img})` }}>
+                <div className="hero justify-start min-h-80 rounded" style={{ backgroundImage: `url(${img})` }}>
                     <div className="hero-overlay text-left bg-opacity-0"></div>
                     <div className="">
                         <div className="max-w-md pl-3 lg:pl-10">
