@@ -65,11 +65,11 @@ const QueryDetails = () => {
     }, []);
 
     const getData = async () => {
-        const { data } = await axios(`${import.meta.env.VITE_API_URL}/recommendation`);
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/recommendation`, { withCredentials: true });
         const filteredRecommendations = data.filter(recommendation => recommendation.queryId === _id);
         setRecommendations(filteredRecommendations);
     }
-    const recommendationCountForQuery = recommendations.length;
+    // const recommendationCountForQuery = recommendations.length;
     console.log(recommendations)
 
     return (

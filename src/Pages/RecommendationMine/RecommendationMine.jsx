@@ -14,7 +14,7 @@ const RecommendationMine = () => {
     }, [user]);
 
     const getData = async () => {
-        const { data } = await axios(`${import.meta.env.VITE_API_URL}/recommendation-me/${user?.email}`);
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/recommendation-me/${user?.email}`, { withCredentials: true });
         setMyRecommendations(data);
     }
     return (

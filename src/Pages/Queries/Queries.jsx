@@ -9,6 +9,10 @@ const Queries = () => {
     // const { productImage, queryTitle, productName, brandName, alternationReason } = queries;
 
     const [queries, setQueries] = useState()
+    const [gridLayout, setGridLayout] = useState("grid-cols-1");
+    const [cardStyle, setCardStyle] = useState("");
+    const [cardStyle2, setCardStyle2] = useState("");
+    const [cardStyleImg, setCardStyleImg] = useState("");
 
     useEffect(() => {
         const getData = async () => {
@@ -18,12 +22,24 @@ const Queries = () => {
         getData();
     }, [])
 
+    const toggleGridLayout = (layout) => {
+        setGridLayout(layout);
+        setCardStyle(layout === "grid-cols-3" ? "h-[680px]" : "h-auto")
+        setCardStyle2(layout === 'grid-cols-2' && "h-[700px]");
+        setCardStyleImg(layout === 'grid-cols-3' && "md:h-60 md:max-w-96");
+    };
+
     return (
         <div className="bg-emerald-50">
-            <div className="grid gap-5 py-8 max-w-7xl mx-auto ">
+            <div className="flex justify-center pt-5">
+                <button onClick={() => toggleGridLayout("grid-cols-1")} className="btn mr-2">1 Column</button>
+                <button onClick={() => toggleGridLayout("grid-cols-2")} className="btn mr-2">2 Columns</button>
+                <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn">3 Columns</button>
+            </div>
+            <div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
                 {
                     queries?.map(query => <div key={query._id}>
-                        <div className="card bg-white rounded max-w-4xl mx-auto w-full border-2">
+                        <div className={`card bg-white rounded max-w-4xl mx-auto w-full border-2 ${cardStyle} ${cardStyle2}`}>
                             <div className="card-body lg:px-14">
 
                                 <div className="flex items-center gap-3 lg:gap-5">
@@ -46,13 +62,14 @@ const Queries = () => {
                                 <Link to={`/query/${query._id}`}><button className="btn bg-emerald-200 font-bold w-full lg:max-w-3xl lg:mx-auto">Recommend</button></Link>
                             </div>
                             <figure className="px-5  bg-emerald-100">
-                                <img src={query.productImage} alt="Shoes" className="rounded-xl lg:max-w-xl" />
+                                <img src={query.productImage} alt="Shoes" className={`rounded-xl lg:max-w-lg ${cardStyleImg}`} />
                             </figure>
                         </div>
                     </div>)
 
                 }
             </div>
+
         </div>
     );
 };
