@@ -24,20 +24,20 @@ const Footer = () => {
                         <p className="font-semibold text-white">Quick Link</p>
 
                         <div className="flex flex-col items-start mt-5 space-y-2">
-                            <a href="#" className="text-white transition-colors duration-300 dark:hover:text-blue-400 hover:underline hover:text-emerald-400">Home</a>
-                            <a href="#" className="text-white transition-colors duration-300 dark:hover:text-blue-400 hover:underline hover:text-emerald-400">Queries</a>
-                            <a href="#" className="text-white transition-colors duration-300 dark:hover:text-blue-400 hover:underline hover:text-emerald-400">My Queries</a>
+                            <Link to="/" className="text-white transition-colors duration-300 dark:hover:text-blue-400 hover:underline hover:text-emerald-400">Home</Link>
+                            <Link to="/queries" className="text-white transition-colors duration-300 dark:hover:text-blue-400 hover:underline hover:text-emerald-400">Queries</Link>
+                            <Link to="/my-queries" className="text-white transition-colors duration-300 dark:hover:text-blue-400 hover:underline hover:text-emerald-400">My Queries</Link>
                         </div>
                     </div>
 
                     <div className="md:mt-5">
                         <h2 className="text-xl mb-6">Social Links</h2>
                         <div className="flex -mx-2">
-                            <a href="#" className="mx-2 text-xl text-white transition-colors duration-300 hover:text-emerald-400 dark:hover:text-blue-400" aria-label="Reddit">
+                            <a href="https://www.facebook.com/" target="_blank" className="mx-2 text-xl text-white transition-colors duration-300 hover:text-emerald-400 dark:hover:text-blue-400" aria-label="Reddit">
                                 <FaSquareFacebook></FaSquareFacebook>
                             </a>
 
-                            <a href="#" className="mx-2 text-xl text-white transition-colors duration-300 hover:text-emerald-400 dark:hover:text-blue-400" aria-label="Facebook">
+                            <a href="https://www.linkedin.com/" target="_blank" className="mx-2 text-xl text-white transition-colors duration-300 hover:text-emerald-400 dark:hover:text-blue-400" aria-label="Facebook">
                                 <FaLinkedin></FaLinkedin>
                             </a>
 
@@ -47,7 +47,6 @@ const Footer = () => {
                 </div>
 
                 <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700" />
-
 
                 <p className="text-center">Copyright © 2024 - All right reserved by QueryNest</p>
             </div>

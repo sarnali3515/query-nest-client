@@ -14,19 +14,11 @@ const Queries = () => {
     const [cardStyle, setCardStyle] = useState("");
     const [cardStyle2, setCardStyle2] = useState("");
     const [cardStyleImg, setCardStyleImg] = useState("");
-    const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
         const getData = async () => {
-            try {
-                const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries`);
-                setQueries(data);
-                setFilteredQueries(data); // Set filtered queries initially
-                setLoading(false); // Set loading to false when data is fetched
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                setLoading(false); // Set loading to false in case of error
-            }
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries`);
+            setQueries(data);
         };
         getData();
     }, []);
@@ -37,7 +29,7 @@ const Queries = () => {
 
     const toggleGridLayout = (layout) => {
         setGridLayout(layout);
-        setCardStyle(layout === "grid-cols-3" ? "h-[680px]" : "h-auto");
+        setCardStyle(layout === "grid-cols-3" && "h-[680px]");
         setCardStyle2(layout === 'grid-cols-2' && "h-[700px]");
         setCardStyleImg(layout === 'grid-cols-3' && "md:h-60 md:max-w-96");
     };
@@ -64,13 +56,9 @@ const Queries = () => {
                 <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn bg-emerald-600 dark:bg-gray-950 text-white"><BsFillGrid3X3GapFill></BsFillGrid3X3GapFill></button>
             </div>
 
-            {loading ? (
-                <div className="text-center my-10 md:my-20">
-                    <span className="loading loading-lg loading-spinner text-success"></span>
-                </div>
-            ) : (
-                <div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
-                    {filteredQueries.map(query => (
+            <div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
+                {
+                    filteredQueries.map(query => (
                         <div key={query._id}>
                             <div className={`card bg-white dark:bg-gray-900 dark:text-white rounded max-w-4xl mx-auto w-full border-2 ${cardStyle} ${cardStyle2}`}>
                                 <div className="card-body lg:px-14">
@@ -97,11 +85,9 @@ const Queries = () => {
                                 </figure>
                             </div>
                         </div>
-                    ))}
-                </div>
-            )}
+                    ))
+                }
+            </div>
         </div>
     );
-};
-
-export default Queries;
+}; export default Queries;

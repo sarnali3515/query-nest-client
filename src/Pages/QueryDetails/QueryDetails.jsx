@@ -142,7 +142,10 @@ const QueryDetails = () => {
                     </div>
                 </div>
                 <div className="border-x border-b rounded-b  bg-emerald-50 dark:bg-gray-800">
-                    <h4 className="ml-6 pt-6 font-semibold">All Recommendations -{">"}</h4>
+                    <h4 className="ml-6 pt-6 font-semibold">All Recommendations ({recommendationCount}) -{">"} </h4>
+                    {
+                        recommendationCount === 0 && <p className="pl-6 md:pl-8">No Recommendation yet</p>
+                    }
                     {
                         recommendations.map(recommendation => <div key={recommendation._id}>
                             {
