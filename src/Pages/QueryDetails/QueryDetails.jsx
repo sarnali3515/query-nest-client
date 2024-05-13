@@ -20,7 +20,6 @@ const QueryDetails = () => {
             return;
         }
 
-
         const form = e.target;
         const queryId = _id;
         const recommendTitle = form.title.value;
