@@ -33,10 +33,14 @@ const Navbar = () => {
         <>
             <li className="text-base font-medium"><NavLink to="/">Home</NavLink></li>
             <li className="text-base font-medium"><NavLink to="/queries">Queries</NavLink></li>
-            <li className="text-base font-medium"><NavLink to="/recommendation-me">Recommendations
-                For Me</NavLink></li>
-            <li className="text-base font-medium"><NavLink to="/my-queries">My Queries </NavLink></li>
-            <li className="text-base font-medium"><NavLink to="/my-recommendation">My recommendations </NavLink></li>
+            {
+                user &&
+                <>
+                    <li className="text-base font-medium"><NavLink to="/recommendation-me">Recommendations
+                        For Me</NavLink></li>
+                    <li className="text-base font-medium"><NavLink to="/my-queries">My Queries </NavLink></li>
+                    <li className="text-base font-medium"><NavLink to="/my-recommendation">My recommendations </NavLink></li></>
+            }
         </>
 
     return (

@@ -126,9 +126,9 @@ const Register = () => {
     if (user || loading) return;
     return (
         <div>
-            <section className="bg-emerald-50 py-10">
-                <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-                    <form onSubmit={handleRegister} className="w-full max-w-md">
+            <section className="bg-emerald-50 lg:py-10">
+                <div className="container flex items-center justify-center min-h-screen  mx-auto">
+                    <form onSubmit={handleRegister} className="w-full rounded bg-emerald-100 p-5 max-w-md">
                         <p className="text-center text-xl">Welcome to Query<span className="text-emerald-800">Nest</span>!</p>
 
                         <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white text-center">Sign Up</h1>
