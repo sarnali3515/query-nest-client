@@ -11,7 +11,7 @@ const Banner = () => {
                     <div className="hero-overlay text-left bg-opacity-0"></div>
                     <div className="">
                         <div className="max-w-xl pl-3 lg:pl-10">
-                            <h1 className="mb-5 text-5xl font-bold">
+                            <h1 className="mb-5 text-3xl md:text-5xl font-bold">
                                 <Typewriter
                                     words={['Explore All Queries', 'Discover New Insights']}
                                     loop={false}

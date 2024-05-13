@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { IoGrid } from "react-icons/io5";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { TbLayoutListFilled } from "react-icons/tb";
 
 
 const Queries = () => {
@@ -11,11 +14,19 @@ const Queries = () => {
     const [cardStyle, setCardStyle] = useState("");
     const [cardStyle2, setCardStyle2] = useState("");
     const [cardStyleImg, setCardStyleImg] = useState("");
+    const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries`);
-            setQueries(data);
+            try {
+                const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries`);
+                setQueries(data);
+                setFilteredQueries(data); // Set filtered queries initially
+                setLoading(false); // Set loading to false when data is fetched
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setLoading(false); // Set loading to false in case of error
+            }
         };
         getData();
     }, []);
@@ -48,14 +59,18 @@ const Queries = () => {
                 </div>
             </div>
             <div className="flex justify-center pt-8">
-                <button onClick={() => toggleGridLayout("grid-cols-1")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2">1 Column</button>
-                <button onClick={() => toggleGridLayout("grid-cols-2")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2">2 Columns</button>
-                <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn bg-emerald-600 dark:bg-gray-950 text-white">3 Columns</button>
+                <button onClick={() => toggleGridLayout("grid-cols-1")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2"><TbLayoutListFilled></TbLayoutListFilled></button>
+                <button onClick={() => toggleGridLayout("grid-cols-2")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2"><IoGrid></IoGrid></button>
+                <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn bg-emerald-600 dark:bg-gray-950 text-white"><BsFillGrid3X3GapFill></BsFillGrid3X3GapFill></button>
             </div>
 
-            <div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
-                {
-                    filteredQueries.map(query => (
+            {loading ? (
+                <div className="text-center my-10 md:my-20">
+                    <span className="loading loading-lg loading-spinner text-success"></span>
+                </div>
+            ) : (
+                <div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
+                    {filteredQueries.map(query => (
                         <div key={query._id}>
                             <div className={`card bg-white dark:bg-gray-900 dark:text-white rounded max-w-4xl mx-auto w-full border-2 ${cardStyle} ${cardStyle2}`}>
                                 <div className="card-body lg:px-14">
@@ -82,9 +97,9 @@ const Queries = () => {
                                 </figure>
                             </div>
                         </div>
-                    ))
-                }
-            </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 };
