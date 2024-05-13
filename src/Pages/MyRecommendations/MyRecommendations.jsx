@@ -47,60 +47,62 @@ const MyRecommendations = () => {
         }
     };
     return (
-        <div className="max-w-7xl mx-auto my-8">
-            <h1 className="text-3xl font-bold text-center mb-4">My Recommendations</h1>
-            <div className="overflow-x-auto bg-emerald-50">
-                <table className="table">
-                    {/* head */}
-                    <thead className="bg-emerald-100">
-                        <tr className="font-black">
+        <div className="dark:bg-gray-800 py-8">
+            <div className="max-w-7xl mx-auto ">
+                <h1 className="text-3xl font-bold text-center mb-4 dark:text-white">My Recommendations</h1>
+                <div className="overflow-x-auto bg-emerald-50 dark:bg-gray-700 dark:text-white">
+                    <table className="table">
+                        {/* head */}
+                        <thead className="bg-emerald-100 dark:bg-gray-900 dark:text-white">
+                            <tr className="font-black">
 
-                            <th className="md:text-sm">Query Information</th>
-                            <th className="md:text-sm">Recommended Product Information</th>
-                            <th className="md:text-sm">Time</th>
-                            <th className="md:text-sm">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            myRecommendations.length <= 0 &&
-                            <div className="text-center mt-6">
-                                <h4 className="text-xl mb-7">No Recommendation Available</h4>
-                            </div>
-                        }
-                        {/* row 1 */}
-                        {
-                            myRecommendations.map(recommendation => (
-                                <tr key={recommendation._id}>
+                                <th className="md:text-sm">Query Information</th>
+                                <th className="md:text-sm">Recommended Product Information</th>
+                                <th className="md:text-sm">Time</th>
+                                <th className="md:text-sm">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                myRecommendations.length <= 0 &&
+                                <div className="text-center mt-6">
+                                    <h4 className="text-xl mb-7">No Recommendation Available</h4>
+                                </div>
+                            }
+                            {/* row 1 */}
+                            {
+                                myRecommendations.map(recommendation => (
+                                    <tr key={recommendation._id}>
 
-                                    <td>
-                                        <span className="font-bold">{recommendation.queryTitle}</span>
-                                        <br />
-                                        <span className="badge badge-ghost badge-sm">Query By {recommendation.userName}</span>
-                                    </td>
-                                    <td>
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src={recommendation.recommendPhoto} alt="Avatar Tailwind CSS Component" />
+                                        <td>
+                                            <span className="font-bold">{recommendation.queryTitle}</span>
+                                            <br />
+                                            <span className="badge badge-ghost badge-sm">Query By {recommendation.userName}</span>
+                                        </td>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle w-12 h-12">
+                                                        <img src={recommendation.recommendPhoto} alt="Avatar Tailwind CSS Component" />
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold">{recommendation.recommendTitle}</div>
+                                                    <div className="text-sm opacity-50">{recommendation.recommendName}</div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div className="font-bold">{recommendation.recommendTitle}</div>
-                                                <div className="text-sm opacity-50">{recommendation.recommendName}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>{recommendation.recommendTime}</td>
-                                    <th>
-                                        <Link to={`/query/${recommendation.queryId}`}><button title="View Details" className="btn btn-ghost btn-xs text-xl"><GrView></GrView></button></Link>
-                                        <button title="Delete" onClick={() => handleDeleteRecommendation(recommendation._id)} className="btn btn-ghost btn-xs text-2xl"><MdDelete></MdDelete></button>
-                                    </th>
-                                </tr>
-                            ))
-                        }
-                    </tbody>
-                </table>
+                                        </td>
+                                        <td>{recommendation.recommendTime}</td>
+                                        <th>
+                                            <Link to={`/query/${recommendation.queryId}`}><button title="View Details" className="btn btn-ghost btn-xs text-xl"><GrView></GrView></button></Link>
+                                            <button title="Delete" onClick={() => handleDeleteRecommendation(recommendation._id)} className="btn btn-ghost btn-xs text-2xl"><MdDelete></MdDelete></button>
+                                        </th>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );

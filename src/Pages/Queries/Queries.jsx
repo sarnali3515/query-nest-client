@@ -36,10 +36,10 @@ const Queries = () => {
     };
 
     return (
-        <div className="bg-emerald-50">
+        <div className="bg-emerald-50 dark:bg-gray-800">
             <div className="flex justify-center  pt-4">
                 <div className="relative">
-                    <label className="input input-bordered flex items-center gap-2">
+                    <label className="input input-bordered dark:text-white dark:bg-black flex items-center gap-2">
                         <input type="text" className="grow" placeholder="Search by product name"
                             value={searchText}
                             onChange={handleSearchChange} />
@@ -48,16 +48,16 @@ const Queries = () => {
                 </div>
             </div>
             <div className="flex justify-center pt-8">
-                <button onClick={() => toggleGridLayout("grid-cols-1")} className="btn bg-emerald-600 text-white mr-2">1 Column</button>
-                <button onClick={() => toggleGridLayout("grid-cols-2")} className="btn bg-emerald-600 text-white mr-2">2 Columns</button>
-                <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn bg-emerald-600 text-white">3 Columns</button>
+                <button onClick={() => toggleGridLayout("grid-cols-1")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2">1 Column</button>
+                <button onClick={() => toggleGridLayout("grid-cols-2")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2">2 Columns</button>
+                <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn bg-emerald-600 dark:bg-gray-950 text-white">3 Columns</button>
             </div>
 
             <div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
                 {
                     filteredQueries.map(query => (
                         <div key={query._id}>
-                            <div className={`card bg-white rounded max-w-4xl mx-auto w-full border-2 ${cardStyle} ${cardStyle2}`}>
+                            <div className={`card bg-white dark:bg-gray-900 dark:text-white rounded max-w-4xl mx-auto w-full border-2 ${cardStyle} ${cardStyle2}`}>
                                 <div className="card-body lg:px-14">
                                     <div className="flex items-center gap-3 lg:gap-5">
                                         <div className="avatar">
@@ -75,9 +75,9 @@ const Queries = () => {
                                     <p><span className="font-semibold">Brand:</span> {query.brandName}</p>
                                     <p><span className="font-semibold">Alternation Reason:</span> {query.alternationReason}</p>
                                     <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
-                                    <Link to={`/query/${query._id}`}><button className="btn bg-emerald-200 font-bold w-full lg:max-w-3xl lg:mx-auto">Recommend</button></Link>
+                                    <Link to={`/query/${query._id}`}><button className="btn bg-emerald-200 dark:bg-gray-950 dark:text-white font-bold w-full lg:max-w-3xl lg:mx-auto">Recommend</button></Link>
                                 </div>
-                                <figure className="px-5  bg-emerald-100">
+                                <figure className="px-5  bg-emerald-100 dark:bg-gray-950">
                                     <img src={query.productImage} alt="Shoes" className={`rounded-xl md:max-w-lg ${cardStyleImg}`} />
                                 </figure>
                             </div>

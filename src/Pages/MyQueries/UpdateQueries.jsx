@@ -44,45 +44,47 @@ const UpdateQueries = () => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto">
-            <form onSubmit={handleUpdateQueries} className="card-body bg-emerald-100 my-5 rounded">
-                <h1 className="text-2xl font-bold text-center text-emerald-800 py-5">Update Your Queries</h1>
-                <div className="md:flex md:gap-3">
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Product Name</span>
-                        </label>
-                        <input type="text" name="pname" defaultValue={productName} placeholder="Product Name" className="input input-bordered" required />
+        <div className="dark:bg-gray-800 py-5">
+            <div className="max-w-4xl mx-auto">
+                <form onSubmit={handleUpdateQueries} className="card-body bg-emerald-100 dark:bg-gray-700 dark:text-white rounded">
+                    <h1 className="text-2xl font-bold text-center text-emerald-800 dark:text-white py-5">Update Your Queries</h1>
+                    <div className="md:flex md:gap-3">
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text dark:text-white">Product Name</span>
+                            </label>
+                            <input type="text" name="pname" defaultValue={productName} placeholder="Product Name" className="input input-bordered" required />
+                        </div>
+                        <div className="form-control w-full">
+                            <label className="label">
+                                <span className="label-text dark:text-white">Brand Name</span>
+                            </label>
+                            <input type="text" name="brand" defaultValue={brandName} placeholder="Brand of the Product" className="input input-bordered" required />
+                        </div>
                     </div>
-                    <div className="form-control w-full">
+                    <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Brand Name</span>
+                            <span className="label-text dark:text-white">Image URL</span>
                         </label>
-                        <input type="text" name="brand" defaultValue={brandName} placeholder="Brand of the Product" className="input input-bordered" required />
+                        <input type="text" name="photo" defaultValue={productImage} placeholder="Product Image URL" className="input input-bordered" required />
                     </div>
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Image URL</span>
-                    </label>
-                    <input type="text" name="photo" defaultValue={productImage} placeholder="Product Image URL" className="input input-bordered" required />
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Query Title</span>
-                    </label>
-                    <input type="text" name="title" defaultValue={queryTitle} placeholder="Query Title" className="input input-bordered" required />
-                </div>
-                <div className="form-control">
-                    <label className="label">
-                        <span className="label-text">Reason of Boycotting</span>
-                    </label>
-                    <input type="text" name="alternationReason" defaultValue={alternationReason} placeholder="Why Boycotting this product?" className="input input-bordered" required />
-                </div>
-                <div className="form-control mt-6">
-                    <button className="btn bg-emerald-300 font-bold">Post Queries</button>
-                </div>
-            </form>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text dark:text-white">Query Title</span>
+                        </label>
+                        <input type="text" name="title" defaultValue={queryTitle} placeholder="Query Title" className="input input-bordered" required />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text dark:text-white">Reason of Boycotting</span>
+                        </label>
+                        <input type="text" name="alternationReason" defaultValue={alternationReason} placeholder="Why Boycotting this product?" className="input input-bordered" required />
+                    </div>
+                    <div className="form-control mt-6">
+                        <button className="btn bg-emerald-300 font-bold">Post Queries</button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

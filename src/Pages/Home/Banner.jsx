@@ -26,7 +26,7 @@ const Banner = () => {
                                 />
                             </h1>
                             <p className="mb-5">Empower your decisions with knowledge at your fingertips. Delve into our expansive repository of queries and embark on a journey of discovery.</p>
-                            <Link to="/queries"><button className="btn bg-emerald-800 text-white font-bold">All Queries</button></Link>
+                            <Link to="/queries"><button className="btn bg-emerald-800 dark:bg-gray-900 text-white font-bold">All Queries</button></Link>
                         </div>
                     </div>
                 </div>

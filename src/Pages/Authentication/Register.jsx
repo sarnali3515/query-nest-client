@@ -126,10 +126,10 @@ const Register = () => {
     if (user || loading) return;
     return (
         <div>
-            <section className="bg-emerald-50 lg:py-10">
+            <section className="bg-emerald-50 lg:py-10 dark:bg-gray-800">
                 <div className="container flex items-center justify-center min-h-screen  mx-auto">
-                    <form onSubmit={handleRegister} className="w-full rounded bg-emerald-100 p-5 max-w-md">
-                        <p className="text-center text-xl">Welcome to Query<span className="text-emerald-800">Nest</span>!</p>
+                    <form onSubmit={handleRegister} className="w-full rounded dark:bg-gray-700 bg-emerald-100 p-5 max-w-md">
+                        <p className="text-center text-xl dark:text-white">Welcome to QueryNest!</p>
 
                         <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white text-center">Sign Up</h1>
 
@@ -181,7 +181,7 @@ const Register = () => {
 
 
                         <div className="mt-6">
-                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-600 rounded-lg hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50">
+                            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-emerald-600 rounded-lg  hover:bg-emerald-400 focus:outline-none focus:ring focus:ring-emerald-300 focus:ring-opacity-50">
                                 Sign Up
                             </button>
                             <div className="flex items-center justify-between mt-4">
@@ -192,7 +192,7 @@ const Register = () => {
                                 <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
                             </div>
 
-                            <button onClick={handleGoogleSignIn} className="flex w-full items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <button onClick={handleGoogleSignIn} className="flex w-full items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:bg-gray-600 dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500">
                                 <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                                     <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107" />
                                     <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z" fill="#FF3D00" />
@@ -201,7 +201,7 @@ const Register = () => {
                                 </svg>
                                 <span className="mx-2">Sign Up with Google</span>
                             </button>
-                            <button onClick={handleGithubSignIn} className="flex w-full items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <button onClick={handleGithubSignIn} className="flex w-full items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:bg-gray-600 dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-500">
                                 <svg className="w-6 h-6 mx-2" viewBox="0 0 24 24" fill="currentColor">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M12 0C5.372 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.6.111.793-.261.793-.578 0-.285-.01-1.041-.015-2.04-3.338.724-4.042-1.611-4.042-1.611-.546-1.385-1.334-1.754-1.334-1.754-1.09-.745.083-.73.083-.73 1.205.084 1.838 1.238 1.838 1.238 1.07 1.834 2.812 1.304 3.498.998.108-.775.417-1.304.759-1.604-2.665-.303-5.466-1.334-5.466-5.93 0-1.312.469-2.384 1.236-3.224-.124-.304-.536-1.524.117-3.176 0 0 1.007-.322 3.3 1.23.957-.267 1.98-.399 3-.405 1.02.006 2.043.138 3 .405 2.291-1.552 3.297-1.23 3.297-1.23.655 1.652.242 2.872.118 3.176.77.84 1.235 1.912 1.235 3.224 0 4.609-2.805 5.623-5.478 5.918.431.371.812 1.102.812 2.222 0 1.605-.015 2.896-.015 3.287 0 .32.192.695.8.577C20.565 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12"></path>
                                 </svg>
@@ -209,7 +209,7 @@ const Register = () => {
                             </button>
 
                             <div className="mt-6 text-center ">
-                                <p className="text-sm">
+                                <p className="text-sm dark:text-white">
                                     Already have an account? <Link to="/login" className="text-blue-600 font-semibold">Login.</Link>
                                 </p>
                             </div>

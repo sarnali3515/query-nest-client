@@ -18,7 +18,7 @@ const RecentQueries = () => {
     // console.log(queries)
 
     return (
-        <div className="max-w-7xl mx-auto ">
+        <div className="max-w-7xl mx-auto dark:text-white">
             <h1 className="text-3xl font-bold mt-12 border-l-4 border-emerald-600 pl-4"> Most Recent Queries </h1>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 py-8 ">
                 {
@@ -46,7 +46,7 @@ const RecentQueries = () => {
                                     <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
 
                                 </div>
-                                <figure className="px-5  bg-emerald-100">
+                                <figure className="px-5  bg-emerald-100 dark:bg-gray-600">
                                     <img src={query.productImage} alt="Shoes" className="rounded-xl md:h-60 md:max-w-96" />
                                 </figure>
                             </div>
@@ -56,7 +56,7 @@ const RecentQueries = () => {
                 }
 
             </div>
-            <Link to="/queries"><div className="flex mb-8 items-center justify-center"><button className="btn bg-emerald-800 text-white">See All -{">"}</button></div></Link>
+            <Link to="/queries"><div className="flex pb-8 items-center justify-center"><button className="btn bg-emerald-800 dark:bg-emerald-950 text-white">See All -{">"}</button></div></Link>
         </div>
     );
 };
