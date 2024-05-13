@@ -1,5 +1,7 @@
 import Banner from "./Banner";
 import Carousel from "./Carousel";
+import FaqSection from "./FaqSection";
+import Platform from "./Platform";
 import RecentQueries from "./RecentQueries";
 
 
@@ -9,6 +11,8 @@ const Home = () => {
             <Carousel></Carousel>
             <Banner></Banner>
             <RecentQueries></RecentQueries>
+            <Platform></Platform>
+            <FaqSection></FaqSection>
         </div>
     );
 };

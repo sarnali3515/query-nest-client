@@ -6,6 +6,7 @@ import { MdEdit, MdOpenInFull, MdDelete } from "react-icons/md";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Swal from 'sweetalert2';
+import 'animate.css'
 
 const MyQueries = () => {
     const { user } = useContext(AuthContext);
@@ -56,14 +57,14 @@ const MyQueries = () => {
                         <div className="hero-overlay text-left bg-opacity-0"></div>
                         <div className="">
                             <div className="max-w-md pl-3 lg:pl-10 dark:text-black">
-                                <h1 className="mb-5 text-5xl font-bold">Any Queries?</h1>
+                                <h1 className="mb-5 text-5xl font-bold animate__animated animate__bounce">Any Queries?</h1>
                                 <p className="mb-5">Unlock the gateway to your queries realm. Seamlessly add, update, and organize your inquiries in one convenient hub, tailored to your needs.</p>
                                 <Link to="/add-queries"><button className="btn bg-emerald-800 text-white font-bold">+ Add Queries</button></Link>
                             </div>
                         </div>
                     </div>
                 </div>
-                <h1 className="text-4xl font-bold text-center mt-8 pb-5">My Queries</h1>
+                <h1 className="text-4xl font-bold text-center mt-8 pb-5 ">My Queries</h1>
                 {
                     queries.length <= 0 &&
                     <div className="text-center mt-6">
@@ -72,7 +73,7 @@ const MyQueries = () => {
                     </div>
                 }
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div data-aos="flip-left" className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {
                         queries.map(query => <div
                             key={query._id}
