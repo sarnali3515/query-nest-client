@@ -32,21 +32,31 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const logOut = async () => {
+    const logOut = () => {
         setLoading(true);
-        await axios(`${import.meta.env.VITE_API_URL}/logout`, { withCredentials: true })
+        // await axios(`${import.meta.env.VITE_API_URL}/logout`, { withCredentials: true })
         return signOut(auth);
     }
 
-
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail }
+            setUser(currentUser)
             console.log('user in auth', currentUser);
             setUser(currentUser);
             setLoading(false);
+            if (!currentUser) {
+                axios.post(`${import.meta.env.VITE_API_URL}/logout`, loggedUser, {
+                    withCredentials: true
+                })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+            }
         });
         return () => {
-            unSubscribe();
+            return unSubscribe();
         }
     }, [])
 
