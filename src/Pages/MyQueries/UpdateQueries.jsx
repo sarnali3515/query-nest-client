@@ -82,7 +82,7 @@ const UpdateQueries = () => {
                         <input type="text" name="alternationReason" defaultValue={alternationReason} placeholder="Why Boycotting this product?" className="input input-bordered" required />
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn bg-emerald-300 font-bold">Post Queries</button>
+                        <button className="btn bg-emerald-300 font-bold">Update Queries</button>
                     </div>
                 </form>
             </div>

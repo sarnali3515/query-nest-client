@@ -8,10 +8,11 @@ import { toast } from "react-toastify";
 const QueryDetails = () => {
     const query = useLoaderData()
     const { user } = useContext(AuthContext)
-    const { _id, productImage, queryTitle, productName, brandName, alternationReason, userName, userEmail, userImage, currentTime, recommendationCount } = query;
+    // const { _id, productImage, queryTitle, productName, brandName, alternationReason, userName, userEmail, userImage, currentTime, recommendationCount } = query;
 
     const [recommendations, setRecommendations] = useState([]);
-
+    const [updatedQuery, setUpdatedQuery] = useState(query);
+    const { _id, productImage, queryTitle, productName, brandName, alternationReason, userName, userEmail, userImage, currentTime, recommendationCount } = updatedQuery;
 
     useEffect(() => {
         getData()
@@ -59,7 +60,8 @@ const QueryDetails = () => {
         }
 
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/recommendation`, recommendationData);
+            await axios.post(`${import.meta.env.VITE_API_URL}/recommendation`, recommendationData)
+                .then(res => setUpdatedQuery(res.data.updatedQuery));
             toast.success('Recommendation Successful!');
             form.reset();
             // Update recommendation count locally
@@ -102,8 +104,7 @@ const QueryDetails = () => {
                         </div>
                     </div>
                     <div className="">
-                        <div className="card max-w-lg ">
-
+                        <div className="card max-w-lg">
                             <form onSubmit={handleRecommendations} className="card-body ">
                                 <h1 className="text-2xl font-bold text-center text-emerald-800 dark:text-white">Recommendation Box</h1>
                                 <div className="form-control">
