@@ -42,7 +42,7 @@ const MyRecommendations = () => {
             });
 
             if (result.isConfirmed) {
-                await axios.delete(`${import.meta.env.VITE_API_URL}/recommendation/${id}`);
+                await axios.delete(`${import.meta.env.VITE_API_URL}/recommendation/${id}`, { withCredentials: true });
                 toast.success('Deleted Successfully!');
                 // Refresh UI
                 getData();
