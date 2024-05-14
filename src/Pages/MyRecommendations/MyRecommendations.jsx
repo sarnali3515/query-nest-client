@@ -21,10 +21,10 @@ const MyRecommendations = () => {
         try {
             const { data } = await axios(`${import.meta.env.VITE_API_URL}/my-recommendation/${user?.email}`, { withCredentials: true });
             setMyRecommendations(data);
-            setLoading(false); // Set loading to false when data is fetched
+            setLoading(false);
         } catch (error) {
             console.error("Error fetching data:", error);
-            setLoading(false); // Set loading to false in case of error
+            setLoading(false);
             toast.error("Error fetching data. Please try again later.");
         }
     };

@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 import { IoGrid } from "react-icons/io5";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { TbLayoutListFilled } from "react-icons/tb";
+import { toast } from "react-toastify";
 
 
 const Queries = () => {
     const [queries, setQueries] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [filteredQueries, setFilteredQueries] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [gridLayout, setGridLayout] = useState("grid-cols-1");
@@ -17,8 +19,16 @@ const Queries = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries`);
-            setQueries(data);
+
+            try {
+                const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries`);
+                setQueries(data);
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                setLoading(false);
+                toast.error("Error fetching data. Please try again later.");
+            }
         };
         getData();
     }, []);
@@ -51,43 +61,47 @@ const Queries = () => {
                 </div>
             </div>
             <div className="flex justify-center pt-8">
-                <button onClick={() => toggleGridLayout("grid-cols-1")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2"><TbLayoutListFilled></TbLayoutListFilled></button>
-                <button onClick={() => toggleGridLayout("grid-cols-2")} className="btn bg-emerald-600 dark:bg-gray-950 text-white mr-2"><IoGrid></IoGrid></button>
-                <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn bg-emerald-600 dark:bg-gray-950 text-white"><BsFillGrid3X3GapFill></BsFillGrid3X3GapFill></button>
+                <button onClick={() => toggleGridLayout("grid-cols-1")} className="btn bg-emerald-600 dark:bg-gray-950 text-white hidden md:inline mr-2"><TbLayoutListFilled></TbLayoutListFilled></button>
+                <button onClick={() => toggleGridLayout("grid-cols-2")} className="btn bg-emerald-600 dark:bg-gray-950 text-white hidden md:inline mr-2"><IoGrid></IoGrid></button>
+                <button onClick={() => toggleGridLayout("grid-cols-3")} className="btn bg-emerald-600 dark:bg-gray-950 text-white hidden lg:inline"><BsFillGrid3X3GapFill></BsFillGrid3X3GapFill></button>
             </div>
 
-            <div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
-                {
-                    filteredQueries.map(query => (
-                        <div key={query._id}>
-                            <div className={`card bg-white dark:bg-gray-900 dark:text-white rounded max-w-4xl mx-auto w-full border-2 ${cardStyle} ${cardStyle2}`}>
-                                <div className="card-body lg:px-14">
-                                    <div className="flex items-center gap-3 lg:gap-5">
-                                        <div className="avatar">
-                                            <div className="w-14 md:w-16 rounded-full">
-                                                <img src={query.userImage} />
+            {
+                loading ? (<div className="text-center my-10 md:my-20">
+                    <span className="loading loading-lg loading-spinner text-success"></span>
+                </div>) : (<div className={`grid gap-5 py-8 max-w-7xl mx-auto ${gridLayout}`}>
+                    {
+                        filteredQueries.map(query => (
+                            <div key={query._id}>
+                                <div className={`card bg-white dark:bg-gray-900 dark:text-white rounded max-w-4xl mx-auto w-full border-2 ${cardStyle} ${cardStyle2}`}>
+                                    <div className="card-body lg:px-14">
+                                        <div className="flex items-center gap-3 lg:gap-5">
+                                            <div className="avatar">
+                                                <div className="w-14 md:w-16 rounded-full">
+                                                    <img src={query.userImage} />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h2 className="card-title text-lg md:text-2xl font-bold">{query.userName}</h2>
+                                                <p className="text-base">{query.currentTime}</p>
                                             </div>
                                         </div>
-                                        <div>
-                                            <h2 className="card-title text-lg md:text-2xl font-bold">{query.userName}</h2>
-                                            <p className="text-base">{query.currentTime}</p>
-                                        </div>
+                                        <h3 className="text-lg font-semibold">{query.queryTitle}</h3>
+                                        <p><span className="font-semibold">Name:</span> {query.productName}</p>
+                                        <p><span className="font-semibold">Brand:</span> {query.brandName}</p>
+                                        <p><span className="font-semibold">Alternation Reason:</span> {query.alternationReason}</p>
+                                        <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
+                                        <Link to={`/query/${query._id}`}><button className="btn bg-emerald-200 dark:bg-gray-950 dark:text-white font-bold w-full lg:max-w-3xl lg:mx-auto">Recommend</button></Link>
                                     </div>
-                                    <h3 className="text-lg font-semibold">{query.queryTitle}</h3>
-                                    <p><span className="font-semibold">Name:</span> {query.productName}</p>
-                                    <p><span className="font-semibold">Brand:</span> {query.brandName}</p>
-                                    <p><span className="font-semibold">Alternation Reason:</span> {query.alternationReason}</p>
-                                    <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
-                                    <Link to={`/query/${query._id}`}><button className="btn bg-emerald-200 dark:bg-gray-950 dark:text-white font-bold w-full lg:max-w-3xl lg:mx-auto">Recommend</button></Link>
+                                    <figure className="px-5  bg-emerald-100 dark:bg-gray-950">
+                                        <img src={query.productImage} alt="Shoes" className={`rounded-xl md:max-w-lg ${cardStyleImg}`} />
+                                    </figure>
                                 </div>
-                                <figure className="px-5  bg-emerald-100 dark:bg-gray-950">
-                                    <img src={query.productImage} alt="Shoes" className={`rounded-xl md:max-w-lg ${cardStyleImg}`} />
-                                </figure>
                             </div>
-                        </div>
-                    ))
-                }
-            </div>
+                        ))
+                    }
+                </div>)
+            }
         </div>
     );
 }; export default Queries;

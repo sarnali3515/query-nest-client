@@ -12,14 +12,23 @@ const MyQueries = () => {
     const { user } = useContext(AuthContext);
 
     const [queries, setQueries] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getData()
     }, [user]);
 
     const getData = async () => {
-        const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries/${user?.email}`, { withCredentials: true });
-        setQueries(data);
+
+        try {
+            const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries/${user?.email}`, { withCredentials: true });
+            setQueries(data);
+            setLoading(false);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            setLoading(false);
+            toast.error("Error fetching data. Please try again later.");
+        }
     }
 
     const handleDeleteQuery = async id => {
@@ -64,42 +73,49 @@ const MyQueries = () => {
                         </div>
                     </div>
                 </div>
-                <h1 className="text-4xl font-bold text-center mt-8 pb-5 ">My Queries</h1>
                 {
-                    queries.length <= 0 &&
-                    <div className="text-center mt-6">
-                        <h4 className="text-xl mb-7">No Queries Added</h4>
-                        <Link to="/add-queries" className="border-4 text-bold hover:text-emerald-500 border-dotted px-5 py-3">+ Add Queries Now</Link>
-                    </div>
-                }
-
-                <div data-aos="flip-left" className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {
-                        queries.map(query => <div
-                            key={query._id}
-                        >
-                            <div className="card rounded h-[600px] max-w-4xl mx-auto w-full border shadow-xl">
-                                <div className="card-body lg:px-8">
-                                    <h3 className="text-lg font-semibold">{query.queryTitle}</h3>
-                                    <p className="text-xs">Posted on {query.currentTime}</p>
-                                    <p><span className="font-semibold">Name:</span> {query.productName}</p>
-                                    <p><span className="font-semibold">Brand:</span> {query.brandName}</p>
-                                    <p><span className="font-semibold">Alternation Reason:</span> {query.alternationReason}</p>
-
-                                    <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
-                                    <div className="flex gap-2">
-                                        <Link to={`/query/${query._id}`}><button className="btn px-2 bg-emerald-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdOpenInFull> </MdOpenInFull>Details</button></Link>
-                                        <Link to={`/update/${query._id}`} ><button className="btn px-2 bg-blue-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdEdit></MdEdit>Update</button></Link>
-                                        <Link ><button onClick={() => { handleDeleteQuery(query._id) }} className="btn px-2 bg-red-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdDelete></MdDelete> Delete</button></Link>
-                                    </div>
+                    loading ? (
+                        <div className="text-center my-10 md:my-20">
+                            <span className="loading loading-lg loading-spinner text-success"></span>
+                        </div>
+                    ) : (
+                        <div> <h1 className="text-4xl font-bold text-center mt-8 pb-5 ">My Queries</h1>
+                            {
+                                queries.length <= 0 &&
+                                <div className="text-center mt-6">
+                                    <h4 className="text-xl mb-7">No Queries Added</h4>
+                                    <Link to="/add-queries" className="border-4 text-bold hover:text-emerald-500 border-dotted px-5 py-3">+ Add Queries Now</Link>
                                 </div>
-                                <figure className="px-5  bg-emerald-50 dark:bg-gray-900">
-                                    <img src={query.productImage} alt="Shoes" className="rounded-xl md:h-60 md:max-w-96" />
-                                </figure>
-                            </div>
-                        </div>)
-                    }
-                </div>
+                            }
+
+                            <div data-aos="flip-left" className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                                {
+                                    queries.map(query => <div
+                                        key={query._id}
+                                    >
+                                        <div className="card rounded h-[600px] max-w-4xl mx-auto w-full border shadow-xl">
+                                            <div className="card-body lg:px-8">
+                                                <h3 className="text-lg font-semibold">{query.queryTitle}</h3>
+                                                <p className="text-xs">Posted on {query.currentTime}</p>
+                                                <p><span className="font-semibold">Name:</span> {query.productName}</p>
+                                                <p><span className="font-semibold">Brand:</span> {query.brandName}</p>
+                                                <p><span className="font-semibold">Alternation Reason:</span> {query.alternationReason}</p>
+
+                                                <p><span className="font-semibold">Recommendations:</span> {query.recommendationCount}</p>
+                                                <div className="flex gap-2">
+                                                    <Link to={`/query/${query._id}`}><button className="btn px-2 bg-emerald-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdOpenInFull> </MdOpenInFull>Details</button></Link>
+                                                    <Link to={`/update/${query._id}`} ><button className="btn px-2 bg-blue-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdEdit></MdEdit>Update</button></Link>
+                                                    <Link ><button onClick={() => { handleDeleteQuery(query._id) }} className="btn px-2 bg-red-200 font-bold w-full lg:max-w-3xl lg:mx-auto"><MdDelete></MdDelete> Delete</button></Link>
+                                                </div>
+                                            </div>
+                                            <figure className="px-5  bg-emerald-50 dark:bg-gray-900">
+                                                <img src={query.productImage} alt="Shoes" className="rounded-xl md:h-60 md:max-w-96" />
+                                            </figure>
+                                        </div>
+                                    </div>)
+                                }
+                            </div></div>)
+                }
             </div>
         </div>
     );

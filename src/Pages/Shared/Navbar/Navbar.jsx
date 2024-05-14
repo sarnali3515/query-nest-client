@@ -83,7 +83,7 @@ const Navbar = () => {
 
                     {user ? (
                         <>
-                            {/* User profile with hover display name */}
+
                             <div className="dropdown z-10 dropdown-hover dropdown-bottom dropdown-end">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full" title={user.displayName}>
