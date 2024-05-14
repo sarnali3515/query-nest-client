@@ -44,7 +44,7 @@ const MyQueries = () => {
             });
 
             if (result.isConfirmed) {
-                const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/query/${id}`);
+                const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/query/${id}`, { withCredentials: true });
                 console.log(data);
                 toast.success('Deleted Successfully!');
                 // Refresh UI

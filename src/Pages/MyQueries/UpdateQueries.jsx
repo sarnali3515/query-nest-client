@@ -8,6 +8,7 @@ const UpdateQueries = () => {
     const navigate = useNavigate()
     const query = useLoaderData();
     const { _id, productImage, queryTitle, productName, brandName, alternationReason, currentTime, userName, userEmail, userImage, recommendationCount } = query;
+    console.log(productName)
 
     const handleUpdateQueries = async e => {
         e.preventDefault();
@@ -47,13 +48,13 @@ const UpdateQueries = () => {
         <div className="dark:bg-gray-800 py-5">
             <div className="max-w-4xl mx-auto">
                 <form onSubmit={handleUpdateQueries} className="card-body bg-emerald-100 dark:bg-gray-700 dark:text-white rounded">
-                    <h1 className="text-2xl font-bold text-center text-emerald-800 dark:text-white py-5">Update Your Queries</h1>
+                    <h1 className="text-2xl font-bold text-center text-emerald-800 dark:text-white py-5">Update Your Queriess</h1>
                     <div className="md:flex md:gap-3">
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text dark:text-white">Product Name</span>
                             </label>
-                            <input type="text" name="pname" defaultValue={productName} placeholder="Product Name" className="input input-bordered" required />
+                            <input type="text" name="pname" defaultValue={productName} className="input input-bordered" required />
                         </div>
                         <div className="form-control w-full">
                             <label className="label">

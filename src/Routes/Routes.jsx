@@ -52,7 +52,7 @@ const router = createBrowserRouter([
             {
                 path: "/update/:id",
                 element: <PrivateRoute><UpdateQueries></UpdateQueries></PrivateRoute>,
-                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/query/${params.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_API_URL}/query/${params.id}`, { credentials: 'include' })
             },
             {
                 path: "/my-recommendation",
