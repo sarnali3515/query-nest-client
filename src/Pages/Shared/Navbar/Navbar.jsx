@@ -7,6 +7,8 @@ import { IoMdLogIn } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
 import './Navbar.css'
 import { useTheme } from "../../Hook/UseTheme";
+import { FaHome } from 'react-icons/fa';
+
 
 
 const Navbar = () => {
@@ -33,7 +35,7 @@ const Navbar = () => {
 
     const navLinks =
         <>
-            <li className="text-base font-medium"><NavLink to="/">Home</NavLink></li>
+            <li className="text-base font-medium"><NavLink to="/"><FaHome></FaHome> Home</NavLink></li>
             <li className="text-base font-medium"><NavLink to="/queries">Queries</NavLink></li>
             {
                 user &&

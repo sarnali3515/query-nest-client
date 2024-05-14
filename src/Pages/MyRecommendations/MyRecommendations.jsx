@@ -75,6 +75,10 @@ const MyRecommendations = () => {
                             </thead>
                             <tbody>
                                 {/* row 1 */}
+                                {
+                                    myRecommendations.length === 0 &&
+                                    <p className="text-lg text-center py-3">No Recommendation available</p>
+                                }
                                 {myRecommendations.map(recommendation => (
                                     <tr key={recommendation._id}>
                                         <td>

@@ -9,32 +9,42 @@ const QueryDetails = () => {
     const query = useLoaderData()
     const { user } = useContext(AuthContext)
     const { _id, productImage, queryTitle, productName, brandName, alternationReason, userName, userEmail, userImage, currentTime, recommendationCount } = query;
+
     const [recommendations, setRecommendations] = useState([]);
 
-    // console.log(userEmail, user?.email)
+
+    useEffect(() => {
+        getData()
+    }, []);
+
+    const getData = async () => {
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/recommendation`, { withCredentials: true });
+        const filteredRecommendations = data.filter(recommendation => recommendation.queryId === _id);
+        setRecommendations(filteredRecommendations);
+    }
 
     const handleRecommendations = async e => {
+        e.preventDefault();
 
         if (userEmail === user?.email) {
-            toast.error('Not Permitted');
+            toast.error('Cannot recommend on your own queries');
             return;
         }
 
         const form = e.target;
-        const queryId = _id;
         const recommendTitle = form.title.value;
         const recommendName = form.name.value;
         const recommendPhoto = form.photo.value;
         const recommendReason = form.reason.value;
-        const recommenderName = user?.displayName;
-        const recommenderEmail = user?.email;
+        const recommenderName = user.displayName;
+        const recommenderEmail = user.email;
         const currentDate = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
         const formattedDate = currentDate.toLocaleDateString('en-US', options);
         const recommendTime = formattedDate;
 
         const recommendationData = {
-            queryId,
+            queryId: _id,
             queryTitle,
             recommendTitle,
             recommendName,
@@ -47,30 +57,18 @@ const QueryDetails = () => {
             recommenderEmail,
             recommendTime
         }
-        console.table(recommendationData);
 
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/recommendation`, recommendationData)
-            console.log(data)
+            await axios.post(`${import.meta.env.VITE_API_URL}/recommendation`, recommendationData);
             toast.success('Recommendation Successful!');
-            form.reset()
+            form.reset();
+            // Update recommendation count locally
+            setRecommendations(prevRecommendations => [...prevRecommendations, recommendationData]);
         } catch (err) {
-            console.log(err)
+            console.log(err);
+            toast.error('Failed to submit recommendation. Please try again later.');
         }
     }
-
-    useEffect(() => {
-        getData()
-    }, []);
-
-    const getData = async () => {
-        const { data } = await axios(`${import.meta.env.VITE_API_URL}/recommendation`, { withCredentials: true });
-        const filteredRecommendations = data.filter(recommendation => recommendation.queryId === _id);
-        setRecommendations(filteredRecommendations);
-    }
-    // const recommendationCountForQuery = recommendations.length;
-    console.log(recommendations)
-
     return (
         <div className="dark:bg-gray-800 py-6">
             <div className="max-w-5xl mx-auto bg-white  dark:bg-gray-900 dark:text-white">

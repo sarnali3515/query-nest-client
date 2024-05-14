@@ -28,7 +28,7 @@ const RecommendationMine = () => {
     return (
         <div className="dark:bg-gray-800 py-8">
             <div className="max-w-7xl mx-auto dark:text-white">
-                <h1 className="text-3xl font-bold text-center mb-4">My Recommendations</h1>
+                <h1 className="text-3xl font-bold text-center mb-4">Recommendations for Me</h1>
                 {loading ? ( // Show loader if loading is true
                     <div className="text-center my-10 md:my-20">
                         <span className="loading loading-lg loading-spinner text-success"></span>
@@ -47,6 +47,10 @@ const RecommendationMine = () => {
                             </thead>
                             <tbody>
                                 {/* row 1 */}
+                                {
+                                    myRecommendations.length === 0 &&
+                                    <p className="text-lg text-center py-3">No Recommendation available</p>
+                                }
                                 {myRecommendations.map(recommendation => (
                                     <tr key={recommendation._id}>
                                         <td>
