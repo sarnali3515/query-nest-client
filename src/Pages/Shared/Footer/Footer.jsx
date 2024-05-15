@@ -48,7 +48,7 @@ const Footer = () => {
 
                 <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700" />
 
-                <p className="text-center">Copyright © 2024 - All right reserved by QueryNest</p>
+                <p className="text-center">Copyright © 2024 - All right reserved by QueryNest-Sarnali</p>
             </div>
         </footer>
     );
