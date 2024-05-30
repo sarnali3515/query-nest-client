@@ -43,13 +43,15 @@ const Navbar = () => {
                     <li className="text-base font-medium"><NavLink to="/recommendation-me">Recommendations
                         For Me</NavLink></li>
                     <li className="text-base font-medium"><NavLink to="/my-queries">My Queries </NavLink></li>
-                    <li className="text-base font-medium"><NavLink to="/my-recommendation">My recommendations </NavLink></li></>
+                    <li className="text-base font-medium"><NavLink to="/my-recommendation">My recommendations </NavLink></li>
+                    <li className="text-base font-medium"><NavLink to="/my-favorites">Favorites </NavLink></li>
+                </>
             }
         </>
 
     return (
         <div className="bg-emerald-700 dark:bg-gray-900">
-            <div className="navbar  text-white max-w-7xl mx-auto">
+            <div className="navbar text-white max-w-7xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost px-1 lg:hidden">
