@@ -41,7 +41,7 @@ user experience.
 
 ## Installation
 - Clone the repository: git clone  https://github.com/sarnali3515/query-nest-client.git
-- cd edumosaic file
+- cd querynest client file
 - Install dependencies: npm install
 - Set up frontend environment variables (Firebase config): Create a .env file 
 - Run the frontend: npm run dev
