@@ -3,6 +3,9 @@ QueryNest
 
 # Live Site Link: https://query-nest.web.app
 
+# Overview
+QueryNest, a web application for managing and sharing alternative product information and recommendations. The platform features a dynamic query and recommendation system, personalized navigation, secure user authentication, and fully responsive. 
+
 # Features
 - Developed a responsive Alternative Product Information System where user can post, modify, and 
 remove product queries.
